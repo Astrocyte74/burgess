@@ -973,15 +973,20 @@
                     <div class="text-center mb-6">
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="wiwaxia-toggle">
                             <div class="fossil-view">
-                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-stone-600 to-amber-fossil rounded-lg shadow-lg flex items-center justify-center">
-                                    <span class="text-white font-bold">Wiwaxia fossil</span>
-                                </div>
+                                <img src="fossils/wiwaxia/wiwaxia_fossil.jpg" alt="Wiwaxia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                             <div class="living-view">
-                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-shale-green to-green-700 rounded-lg shadow-lg flex items-center justify-center">
-                                    <span class="text-white font-bold">Wiwaxia reconstruction</span>
-                                </div>
+                                <img src="ilustrated_creatures_of_the_burgess_shale/wiwaxia_drawing.jpg" alt="Wiwaxia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
+                        </div>
+                        <!-- Individual toggle buttons -->
+                        <div class="flex justify-center gap-2 mt-4">
+                            <button onclick="showFossilViewFor('wiwaxia-toggle')" id="wiwaxia-fossil-btn" class="individual-toggle-btn active">
+                                🦴 Fossil
+                            </button>
+                            <button onclick="showLivingViewFor('wiwaxia-toggle')" id="wiwaxia-living-btn" class="individual-toggle-btn">
+                                🎨 Reconstruction
+                            </button>
                         </div>
                     </div>
                     <div class="text-center">
@@ -1008,15 +1013,20 @@
                     <div class="text-center mb-6">
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="pikaia-toggle">
                             <div class="fossil-view">
-                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-gray-700 to-amber-fossil rounded-lg shadow-lg flex items-center justify-center">
-                                    <span class="text-white font-bold">Pikaia fossil</span>
-                                </div>
+                                <img src="fossils/pikaia/Pikaia_fossil.jpg" alt="Pikaia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                             <div class="living-view">
-                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-amber-fossil to-yellow-600 rounded-lg shadow-lg flex items-center justify-center">
-                                    <span class="text-black font-bold">Pikaia reconstruction</span>
-                                </div>
+                                <img src="ilustrated_creatures_of_the_burgess_shale/Pikaia_drawing.jpg" alt="Pikaia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
+                        </div>
+                        <!-- Individual toggle buttons -->
+                        <div class="flex justify-center gap-2 mt-4">
+                            <button onclick="showFossilViewFor('pikaia-toggle')" id="pikaia-fossil-btn" class="individual-toggle-btn active">
+                                🦴 Fossil
+                            </button>
+                            <button onclick="showLivingViewFor('pikaia-toggle')" id="pikaia-living-btn" class="individual-toggle-btn">
+                                🎨 Reconstruction
+                            </button>
                         </div>
                     </div>
                     <div class="text-center">
