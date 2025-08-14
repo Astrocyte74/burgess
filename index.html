@@ -121,6 +121,116 @@
             color: #1e293b;
         }
         
+        /* Faith & Science Modal Styles */
+        .faith-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .faith-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .faith-modal-content {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 85vh;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .faith-modal.active .faith-modal-content {
+            transform: scale(1);
+        }
+        
+        .faith-modal-header {
+            padding: 24px 24px 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+            margin-bottom: 0;
+            padding-bottom: 16px;
+        }
+        
+        .faith-modal-close {
+            background: none;
+            border: none;
+            color: #e5e7eb;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        
+        .faith-modal-close:hover {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+        
+        .faith-modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(85vh - 120px);
+        }
+        
+        .faith-modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .faith-modal-body::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 4px;
+        }
+        
+        .faith-modal-body::-webkit-scrollbar-thumb {
+            background: rgba(251, 191, 36, 0.3);
+            border-radius: 4px;
+        }
+        
+        .faith-modal-body::-webkit-scrollbar-thumb:hover {
+            background: rgba(251, 191, 36, 0.5);
+        }
+        
+        /* Responsive adjustments for faith modal */
+        @media (max-width: 768px) {
+            .faith-modal-content {
+                max-height: 90vh;
+                margin: 10px;
+                border-radius: 16px;
+            }
+            
+            .faith-modal-header {
+                padding: 20px 20px 0 20px;
+            }
+            
+            .faith-modal-body {
+                padding: 20px;
+                max-height: calc(90vh - 100px);
+            }
+        }
+        
         /* Image Modal Styles */
         .image-modal {
             position: fixed;
@@ -469,7 +579,7 @@
             <!-- Stats grid - Mobile optimized -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-sm sm:max-w-md md:max-w-4xl mx-auto">
                 <div class="text-center">
-                    <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-fossil mb-1 md:mb-2">508M</div>
+                    <div id="yearsStat" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-fossil mb-1 md:mb-2 cursor-pointer transition-all duration-300 hover:scale-105">508M</div>
                     <div class="text-xs sm:text-sm text-limestone-gray uppercase tracking-wide">Years Ago</div>
                 </div>
                 <div class="text-center">
@@ -2400,6 +2510,227 @@
                 }
             });
         });
+
+        // Easter Egg: Hidden Faith & Science Modal
+        let clickCount = 0;
+        let clickTimer = null;
+        const yearsStat = document.getElementById('yearsStat');
+        
+        function resetClickCount() {
+            clickCount = 0;
+            yearsStat.style.transform = '';
+            yearsStat.style.color = '';
+            yearsStat.style.textShadow = '';
+        }
+        
+        function openFaithModal() {
+            const modal = document.getElementById('faithScienceModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeFaithModal() {
+            const modal = document.getElementById('faithScienceModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('faithScienceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFaithModal();
+            }
+        });
+        
+        // Close modal with Escape key (add to existing escape handler)
+        const originalKeydown = document.onkeydown;
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const faithModal = document.getElementById('faithScienceModal');
+                if (faithModal.classList.contains('active')) {
+                    closeFaithModal();
+                }
+            }
+        });
+        
+        yearsStat.addEventListener('click', function() {
+            clickCount++;
+            
+            // Clear previous timer
+            if (clickTimer) {
+                clearTimeout(clickTimer);
+            }
+            
+            // Visual feedback on each click
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Progress indicator
+            if (clickCount === 1) {
+                this.style.color = '#fbbf24'; // Slightly brighter
+            } else if (clickCount === 2) {
+                this.style.color = '#f59e0b'; // More golden
+            } else if (clickCount === 3) {
+                this.style.color = '#d97706'; // Even more golden
+            } else if (clickCount === 4) {
+                this.style.color = '#92400e'; // Deep gold
+                this.style.textShadow = '0 0 10px rgba(251, 191, 36, 0.5)';
+            }
+            
+            // Open modal on 5th click
+            if (clickCount >= 5) {
+                this.style.color = '#ffffff';
+                this.style.textShadow = '0 0 20px rgba(251, 191, 36, 0.8)';
+                setTimeout(() => {
+                    openFaithModal();
+                    resetClickCount();
+                }, 200);
+                return;
+            }
+            
+            // Reset after 3 seconds of no clicks
+            clickTimer = setTimeout(resetClickCount, 3000);
+        });
     </script>
+
+    <!-- Hidden Faith & Science Modal -->
+    <div id="faithScienceModal" class="faith-modal">
+        <div class="faith-modal-content">
+            <div class="faith-modal-header">
+                <h2 class="text-2xl md:text-3xl font-bold text-amber-fossil mb-4">
+                    🤝 Reconciling Evolution with Latter-day Saint Faith
+                </h2>
+                <button class="faith-modal-close" onclick="closeFaithModal()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="faith-modal-body">
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">Faith vs. Science or Faith and Science?</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        Can a faithful member of The Church of Jesus Christ of Latter-day Saints accept the science of evolution? 
+                        Many Latter-day Saint scholars and leaders have found ways to harmonize their faith with scientific findings. 
+                        Rather than seeing science and scripture as bitter enemies, we can view them as answering different questions.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">The Problem of "Concordism"</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        <span class="text-amber-fossil font-semibold">Concordism</span> assumes that science and scripture must 
+                        agree perfectly in their details about creation. If there's a mismatch, you must choose one or the other. 
+                        However, this assumption is flawed - the Bible was never intended to give a modern scientific account of 
+                        how God created the world.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">Interpreting Genesis in Context</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        The Bible reflects an ancient worldview. Scripture often speaks in terms of the worldview of its original audience. 
+                        God taught spiritual truths using their existing understanding. Genesis was given to teach theological lessons 
+                        about God's power and purpose, not to reveal scientific details of Earth's natural history.
+                    </p>
+                    <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg mb-4">
+                        <p class="text-amber-fossil text-sm font-semibold mb-2">Key Point:</p>
+                        <p class="text-gray-200 text-sm">
+                            "If I have a non-scientific creation account, but I try to read it as scientific history, 
+                            that's not a literal reading. That's a misreading." - Ben Spackman
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">LDS History: Early Debates and Evolving Views</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        Two scientist-apostles, <span class="text-amber-fossil font-semibold">Elder James E. Talmage</span> and 
+                        <span class="text-amber-fossil font-semibold">Elder John A. Widtsoe</span>, were quite open to evolution 
+                        and saw scientific discoveries as reinforcing their faith. They viewed natural laws as evidence of God's work.
+                    </p>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        <span class="text-amber-fossil font-semibold">President David O. McKay</span> (1951-1970) was personally 
+                        friendly toward evolutionary theory, once stating that "Genesis in no way prohibits evolution" in the origins 
+                        of human bodies. He approved scientific articles about DNA and evolution for Church magazines.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">Current Church Position</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        The Church has explicitly stated that <span class="text-amber-fossil font-semibold">"the Church has no official 
+                        position on the theory of evolution"</span>, calling it "a matter for scientific study." What the Church does 
+                        affirm is <em>why</em> we are here and <em>who</em> we are: children of God, created in His image.
+                    </p>
+                    <div class="bg-cyan-300 bg-opacity-20 p-4 rounded-lg mb-4">
+                        <p class="text-cyan-300 text-sm font-semibold mb-2">Official Statement:</p>
+                        <p class="text-gray-200 text-sm">
+                            "The scriptures tell why man was created, but they do not tell how."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">Science and Religion: Different Questions</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        Science deals with the natural world—processes, evidence, and mechanisms—while religion deals with 
+                        spiritual truths—meaning, morality, and purpose. They answer different questions:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-shale-green bg-opacity-20 p-4 rounded-lg">
+                            <h4 class="text-green-300 font-semibold mb-2">🔬 Science Asks:</h4>
+                            <ul class="text-gray-200 text-sm space-y-1">
+                                <li>• How do natural processes work?</li>
+                                <li>• What evidence do we observe?</li>
+                                <li>• What mechanisms explain phenomena?</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg">
+                            <h4 class="text-amber-fossil font-semibold mb-2">✨ Religion Asks:</h4>
+                            <ul class="text-gray-200 text-sm space-y-1">
+                                <li>• Why are we here?</li>
+                                <li>• What is our purpose?</li>
+                                <li>• What does it mean to be human?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3">Finding Harmony</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        President Russell M. Nelson taught that <span class="text-amber-fossil font-semibold">"there is no conflict 
+                        between science and religion. Conflict only arises from an incomplete knowledge of either science or religion 
+                        (or both)."</span>
+                    </p>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        Many faithful LDS scientists find that evolution is one of the natural processes instituted by God. 
+                        At BYU, evolution is taught robustly, and faculty have created resources to help students reconcile these truths.
+                    </p>
+                </div>
+
+                <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                    <h3 class="text-lg font-bold text-amber-fossil mb-3">💫 "All Truth Is Part of the Gospel"</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        Latter-day Saints believe God is the Master of the universe. Whether He chose to form our bodies over eons 
+                        through evolution or in an instant is ultimately secondary to the truth that we are His children with a 
+                        divine destiny.
+                    </p>
+                    <p class="text-gray-300 italic text-center">
+                        "No evidence denies the hand of God in directing evolution." - Duane Jeffery, BYU Professor
+                    </p>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <p class="text-gray-400 text-xs">
+                        Sources: Ben Spackman, Gospel Tangents; Church History Topics; BYU Evolution Resources
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
