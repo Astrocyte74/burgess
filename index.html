@@ -296,6 +296,9 @@
             <a href="#cambrian" class="nav-item" onclick="closeNavMenu()">
                 <span class="nav-icon">💥</span>Cambrian Explosion
             </a>
+            <a href="#cambrian-causes" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">⚡</span>Why It Happened
+            </a>
             <a href="#excavation" class="nav-item" onclick="closeNavMenu()">
                 <span class="nav-icon">🔬</span>Modern Techniques
             </a>
@@ -331,15 +334,61 @@
         
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
-            <a href="#intro" class="block py-2 text-limestone-gray">Home</a>
-            <a href="#formation" class="block py-2 text-limestone-gray">Formation</a>
-            <a href="#timeline" class="block py-2 text-limestone-gray">Discovery</a>
-            <a href="#creatures" class="block py-2 text-limestone-gray">Creatures</a>
-            <a href="#explosion" class="block py-2 text-limestone-gray">Explosion</a>
-            <a href="#science" class="block py-2 text-limestone-gray">Science</a>
-            <a href="#analogies" class="block py-2 text-limestone-gray">Connections</a>
-            <a href="#mountains" class="block py-2 text-limestone-gray">Mountains</a>
-            <a href="#visit" class="block py-2 text-limestone-gray">Visit</a>
+            <a href="#intro" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                Home
+            </a>
+            <a href="#formation" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h4a2 2 0 002-2V9a2 2 0 00-2-2H7a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+                </svg>
+                Formation
+            </a>
+            <a href="#timeline" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Discovery
+            </a>
+            <a href="#creatures" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Creatures
+            </a>
+            <a href="#explosion" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                Explosion
+            </a>
+            <a href="#science" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                Science
+            </a>
+            <a href="#analogies" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                </svg>
+                Connections
+            </a>
+            <a href="#mountains" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                </svg>
+                Mountains
+            </a>
+            <a href="#visit" class="flex items-center py-3 text-limestone-gray hover:text-amber-fossil transition-colors">
+                <svg class="w-5 h-5 mr-3 text-amber-fossil" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                Visit
+            </a>
         </div>
     </nav>
 
@@ -1718,6 +1767,325 @@
                                 The Burgess Shale sits where Cambrian mud met an ancient limestone reef - 
                                 now lifted 2.3 km above sea level by the awesome power of mountain building!
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rocky Mountain Formation Section -->
+    <section id="mountains" class="py-16 md:py-24 bg-gradient-to-b from-cosmic-dark to-deep-teal relative">
+        <!-- Background pattern -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/6 w-2 h-2 bg-amber-fossil rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-1/2 right-1/4 w-3 h-3 bg-shale-green rounded-full animate-float"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-deep-teal rounded-full animate-pulse"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    <span class="text-amber-fossil">ROCKY</span><br>
+                    <span class="text-cyan-300">MOUNTAINS</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    How ancient sea floors became towering peaks
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Mountain Building Process -->
+                <div class="bg-cosmic-dark bg-opacity-50 p-8 rounded-2xl border border-amber-fossil border-opacity-30">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl mb-4">🏔️</div>
+                        <h3 class="text-2xl font-bold text-amber-fossil">Mountain Building</h3>
+                        <div class="text-cyan-300 text-sm">80-55 million years ago</div>
+                    </div>
+                    <div class="space-y-4 text-limestone-gray">
+                        <p class="text-sm">
+                            The <span class="text-amber-fossil font-semibold">Laramide Orogeny</span> pushed ancient Pacific 
+                            oceanic plates against North America, crumpling layers like a rug on a hardwood floor.
+                        </p>
+                        <div class="bg-shale-green bg-opacity-20 p-4 rounded-lg">
+                            <h4 class="font-semibold text-cyan-300 mb-2">The Process</h4>
+                            <ul class="text-xs space-y-1">
+                                <li>• <span class="text-amber-fossil">Compression</span> - Pacific plate pushes eastward</li>
+                                <li>• <span class="text-amber-fossil">Thrust faults</span> - Older rock slides over younger</li>
+                                <li>• <span class="text-amber-fossil">Folding</span> - Sedimentary layers buckle upward</li>
+                                <li>• <span class="text-amber-fossil">Uplift</span> - Sea floor rises 2.5 km above sea level</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Front vs Main Ranges -->
+                <div class="bg-cosmic-dark bg-opacity-50 p-8 rounded-2xl border border-amber-fossil border-opacity-30">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl mb-4">⛰️</div>
+                        <h3 class="text-2xl font-bold text-amber-fossil">Front vs Main Ranges</h3>
+                        <div class="text-cyan-300 text-sm">Banff to Golden</div>
+                    </div>
+                    <div class="space-y-4 text-limestone-gray">
+                        <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg">
+                            <h4 class="font-semibold text-cyan-300 mb-2">Front Ranges (East)</h4>
+                            <ul class="text-xs space-y-1">
+                                <li>• <span class="text-amber-fossil">Sawtooth ridges</span> - Tilted limestone peaks</li>
+                                <li>• <span class="text-amber-fossil">Lower elevation</span> - 2,500-3,000m peaks</li>
+                                <li>• <span class="text-amber-fossil">Paleozoic rocks</span> - ~350 million years old</li>
+                                <li>• <span class="text-amber-fossil">Examples</span> - Mount Rundle, Cascade Mountain</li>
+                            </ul>
+                        </div>
+                        <div class="bg-deep-teal bg-opacity-20 p-4 rounded-lg">
+                            <h4 class="font-semibold text-cyan-300 mb-2">Main Ranges (West)</h4>
+                            <ul class="text-xs space-y-1">
+                                <li>• <span class="text-amber-fossil">Massive cliffs</span> - Blocky, layered mountains</li>
+                                <li>• <span class="text-amber-fossil">Higher elevation</span> - 3,300m+ peaks</li>
+                                <li>• <span class="text-amber-fossil">Cambrian cores</span> - Burgess Shale layers!</li>
+                                <li>• <span class="text-amber-fossil">Examples</span> - Mount Victoria, Mount Temple</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Journey from Banff to Golden -->
+            <div class="bg-gradient-to-r from-deep-teal to-cosmic-dark p-8 rounded-2xl border border-cyan-300 border-opacity-30 mb-8">
+                <h3 class="text-2xl font-bold text-center text-amber-fossil mb-6">Journey: Banff → Golden</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-cyan-300 font-bold text-lg mb-2">🏘️ Banff</div>
+                        <div class="text-limestone-gray text-sm">
+                            <div class="font-semibold mb-1">Front Ranges</div>
+                            <div class="text-xs">Tilted limestone sawtooths</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-cyan-300 font-bold text-lg mb-2">🏔️ Lake Louise</div>
+                        <div class="text-limestone-gray text-sm">
+                            <div class="font-semibold mb-1">Main Ranges</div>
+                            <div class="text-xs">Continental Divide peaks</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-cyan-300 font-bold text-lg mb-2">🦕 Field, BC</div>
+                        <div class="text-limestone-gray text-sm">
+                            <div class="font-semibold mb-1">Burgess Shale!</div>
+                            <div class="text-xs">Ancient sea floor exposed</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-cyan-300 font-bold text-lg mb-2">🏞️ Golden</div>
+                        <div class="text-limestone-gray text-sm">
+                            <div class="font-semibold mb-1">Rocky Trench</div>
+                            <div class="text-xs">End of the Rockies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Amazing Fact -->
+            <div class="bg-cosmic-dark bg-opacity-80 p-8 rounded-2xl border border-amber-fossil border-opacity-50 text-center">
+                <div class="text-4xl mb-4">🤯</div>
+                <h3 class="text-xl font-bold text-amber-fossil mb-4">Mind-Blowing Fact</h3>
+                <p class="text-limestone-gray text-lg mb-4">
+                    The Burgess Shale fossils you see today at <span class="text-amber-fossil font-semibold">2,300 meters elevation</span> 
+                    were formed on the bottom of a tropical sea!
+                </p>
+                <p class="text-cyan-300 text-sm italic">
+                    "The mountains lifted these ancient sea floors higher than most clouds!"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cambrian Explosion Causes -->
+    <section id="cambrian-causes" class="py-16 md:py-24 bg-gradient-to-b from-cosmic-dark via-deep-teal to-cosmic-dark relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Animated particles representing the explosion of life -->
+            <div class="absolute top-1/4 left-1/6 w-2 h-2 bg-amber-fossil rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-1/2 right-1/4 w-3 h-3 bg-shale-green rounded-full animate-float"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-cyan-300 rounded-full animate-bounce-slow"></div>
+            <div class="absolute top-3/4 right-1/6 w-2 h-2 bg-amber-fossil rounded-full opacity-60 animate-pulse"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <div class="text-5xl sm:text-6xl md:text-8xl mb-4 md:mb-6">💥</div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-8">
+                    <span class="bg-gradient-to-r from-amber-fossil to-cyan-300 bg-clip-text text-transparent">
+                        Why the Cambrian Explosion Happened
+                    </span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    The triggers behind life's greatest evolutionary experiment
+                </p>
+            </div>
+
+            <!-- Causes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Rise in Oxygen -->
+                <div class="bg-gradient-to-br from-shale-green to-cosmic-dark p-6 md:p-8 rounded-3xl border border-cyan-300 border-opacity-30">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🫁</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-cyan-300 mb-4">Rise in Oxygen Levels</h3>
+                    </div>
+                    <div class="space-y-4 text-limestone-gray text-sm">
+                        <p class="leading-relaxed">
+                            For billions of years, Earth's atmosphere contained very little oxygen. But around 
+                            the time of the Cambrian Explosion, oxygen levels rose dramatically.
+                        </p>
+                        <div class="bg-cyan-300 bg-opacity-20 p-4 rounded-lg">
+                            <p class="text-cyan-300 font-semibold text-xs mb-2">The Oxygen Revolution</p>
+                            <ul class="text-xs space-y-1">
+                                <li>• More oxygen = larger, more complex animals possible</li>
+                                <li>• Enabled development of sophisticated sensory organs</li>
+                                <li>• Allowed for active predation and escape behaviors</li>
+                                <li>• Supported higher metabolic rates</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-amber-fossil italic">
+                            "Oxygen was the fuel that powered the Cambrian engine of evolution"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Development of Predation -->
+                <div class="bg-gradient-to-br from-deep-teal to-cosmic-dark p-6 md:p-8 rounded-3xl border border-amber-fossil border-opacity-30">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🦈</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-4">Development of Predation</h3>
+                    </div>
+                    <div class="space-y-4 text-limestone-gray text-sm">
+                        <p class="leading-relaxed">
+                            The evolution of predators like Anomalocaris created an "arms race" that drove 
+                            rapid innovation in defensive and offensive strategies.
+                        </p>
+                        <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg">
+                            <p class="text-amber-fossil font-semibold text-xs mb-2">Predator-Prey Arms Race</p>
+                            <ul class="text-xs space-y-1">
+                                <li>• Spurred development of shells, spines, and armor</li>
+                                <li>• Drove evolution of better eyes and nervous systems</li>
+                                <li>• Created pressure for faster movement</li>
+                                <li>• Led to burrowing and hiding behaviors</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-cyan-300 italic">
+                            "Eat or be eaten - the ultimate evolutionary motivator"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Genetic Innovations -->
+                <div class="bg-gradient-to-br from-cosmic-dark to-shale-green p-6 md:p-8 rounded-3xl border border-shale-green border-opacity-50">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🧬</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-green-300 mb-4">Genetic Innovations</h3>
+                    </div>
+                    <div class="space-y-4 text-limestone-gray text-sm">
+                        <p class="leading-relaxed">
+                            The evolution of Hox genes - master control genes that determine body plan 
+                            architecture - allowed for unprecedented complexity in animal design.
+                        </p>
+                        <div class="bg-green-300 bg-opacity-20 p-4 rounded-lg">
+                            <p class="text-green-300 font-semibold text-xs mb-2">Hox Gene Revolution</p>
+                            <ul class="text-xs space-y-1">
+                                <li>• Enabled segmented body plans</li>
+                                <li>• Allowed specialization of body parts</li>
+                                <li>• Made possible complex appendages and organs</li>
+                                <li>• Provided toolkit for body plan diversity</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-amber-fossil italic">
+                            "Hox genes: the architectural blueprints of animal bodies"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Environmental Triggers -->
+                <div class="bg-gradient-to-br from-deep-teal to-cosmic-dark p-6 md:p-8 rounded-3xl border border-cyan-300 border-opacity-30">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🌊</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-cyan-300 mb-4">Environmental Triggers</h3>
+                    </div>
+                    <div class="space-y-4 text-limestone-gray text-sm">
+                        <p class="leading-relaxed">
+                            Climate changes, shifting ocean chemistry, and changing sea levels created 
+                            new ecological niches and evolutionary pressures.
+                        </p>
+                        <div class="bg-cyan-300 bg-opacity-20 p-4 rounded-lg">
+                            <p class="text-cyan-300 font-semibold text-xs mb-2">Environmental Changes</p>
+                            <ul class="text-xs space-y-1">
+                                <li>• Warming global temperatures</li>
+                                <li>• Rising sea levels created new habitats</li>
+                                <li>• Changed ocean chemistry</li>
+                                <li>• Continental drift altered currents</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-amber-fossil italic">
+                            "Environmental change: the stage upon which evolution performs"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Perfect Storm -->
+            <div class="bg-cosmic-dark bg-opacity-80 p-8 rounded-2xl border border-amber-fossil border-opacity-50 text-center">
+                <div class="text-4xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold text-amber-fossil mb-4">The Perfect Storm</h3>
+                <p class="text-limestone-gray text-lg mb-4">
+                    Scientists believe it wasn't just one factor, but the <span class="text-amber-fossil font-semibold">perfect combination</span> 
+                    of all these elements that triggered the Cambrian Explosion.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <div class="text-cyan-300 text-sm font-semibold">🫁 Oxygen</div>
+                    <div class="text-amber-fossil text-sm font-semibold">🦈 Predation</div>
+                    <div class="text-green-300 text-sm font-semibold">🧬 Hox Genes</div>
+                    <div class="text-cyan-300 text-sm font-semibold">🌊 Environment</div>
+                </div>
+                <p class="text-cyan-300 text-sm italic mt-4">
+                    "A convergence of factors that unleashed life's greatest experiment"
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="mt-12 bg-gradient-to-r from-deep-teal to-cosmic-dark p-8 rounded-2xl border border-cyan-300 border-opacity-30">
+                <h3 class="text-2xl font-bold text-center text-amber-fossil mb-8">Timeline of the Explosion</h3>
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-300 to-amber-fossil opacity-50"></div>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center justify-center relative">
+                            <div class="bg-cyan-300 w-4 h-4 rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                            <div class="text-center bg-cosmic-dark bg-opacity-80 p-4 rounded-lg border border-cyan-300 border-opacity-30 max-w-md">
+                                <div class="text-cyan-300 font-bold text-sm mb-1">~550 Ma</div>
+                                <div class="text-limestone-gray text-xs">Oxygen levels rise</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center relative">
+                            <div class="bg-amber-fossil w-4 h-4 rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                            <div class="text-center bg-cosmic-dark bg-opacity-80 p-4 rounded-lg border border-amber-fossil border-opacity-30 max-w-md">
+                                <div class="text-amber-fossil font-bold text-sm mb-1">~540 Ma</div>
+                                <div class="text-limestone-gray text-xs">Cambrian begins - First shells appear</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center relative">
+                            <div class="bg-green-300 w-4 h-4 rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                            <div class="text-center bg-cosmic-dark bg-opacity-80 p-4 rounded-lg border border-green-300 border-opacity-30 max-w-md">
+                                <div class="text-green-300 font-bold text-sm mb-1">~520 Ma</div>
+                                <div class="text-limestone-gray text-xs">Peak of explosion - Most body plans appear</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center relative">
+                            <div class="bg-cyan-300 w-4 h-4 rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                            <div class="text-center bg-cosmic-dark bg-opacity-80 p-4 rounded-lg border border-cyan-300 border-opacity-30 max-w-md">
+                                <div class="text-cyan-300 font-bold text-sm mb-1">~508 Ma</div>
+                                <div class="text-limestone-gray text-xs">Burgess Shale community thrives</div>
+                            </div>
                         </div>
                     </div>
                 </div>
