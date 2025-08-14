@@ -2511,28 +2511,29 @@
             });
         });
 
-        // Easter Egg: Hidden Faith & Science Modal
-        let clickCount = 0;
-        let clickTimer = null;
-        const yearsStat = document.getElementById('yearsStat');
-        
-        function resetClickCount() {
-            clickCount = 0;
-            yearsStat.style.transform = '';
-            yearsStat.style.color = '';
-            yearsStat.style.textShadow = '';
-        }
+        // Easter Egg: Hidden Faith & Science Modal (Simplified)
+        let easterEggClicks = 0;
+        let resetTimer = null;
         
         function openFaithModal() {
             const modal = document.getElementById('faithScienceModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            console.log('Faith modal opened');
         }
         
         function closeFaithModal() {
             const modal = document.getElementById('faithScienceModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
+        }
+        
+        function resetEasterEgg() {
+            easterEggClicks = 0;
+            const yearsStat = document.getElementById('yearsStat');
+            yearsStat.style.color = '';
+            yearsStat.style.textShadow = '';
+            yearsStat.style.transform = '';
         }
         
         // Close modal when clicking outside
@@ -2542,8 +2543,7 @@
             }
         });
         
-        // Close modal with Escape key (add to existing escape handler)
-        const originalKeydown = document.onkeydown;
+        // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const faithModal = document.getElementById('faithScienceModal');
@@ -2553,45 +2553,44 @@
             }
         });
         
-        yearsStat.addEventListener('click', function() {
-            clickCount++;
+        // Easter Egg Click Handler
+        document.getElementById('yearsStat').addEventListener('click', function(e) {
+            e.preventDefault();
+            easterEggClicks++;
+            console.log('Easter egg click:', easterEggClicks);
             
-            // Clear previous timer
-            if (clickTimer) {
-                clearTimeout(clickTimer);
+            // Clear existing timer
+            if (resetTimer) {
+                clearTimeout(resetTimer);
             }
             
-            // Visual feedback on each click
-            this.style.transform = 'scale(1.1)';
+            // Visual feedback
+            this.style.transform = 'scale(1.05)';
             setTimeout(() => {
                 this.style.transform = '';
-            }, 150);
+            }, 200);
             
-            // Progress indicator
-            if (clickCount === 1) {
-                this.style.color = '#fbbf24'; // Slightly brighter
-            } else if (clickCount === 2) {
-                this.style.color = '#f59e0b'; // More golden
-            } else if (clickCount === 3) {
-                this.style.color = '#d97706'; // Even more golden
-            } else if (clickCount === 4) {
-                this.style.color = '#92400e'; // Deep gold
-                this.style.textShadow = '0 0 10px rgba(251, 191, 36, 0.5)';
-            }
-            
-            // Open modal on 5th click
-            if (clickCount >= 5) {
+            // Color progression
+            if (easterEggClicks === 1) {
+                this.style.color = '#fbbf24';
+                console.log('First click - color changed');
+            } else if (easterEggClicks === 2) {
+                this.style.color = '#f59e0b';
+                this.style.textShadow = '0 0 5px rgba(251, 191, 36, 0.5)';
+                console.log('Second click - glow added');
+            } else if (easterEggClicks >= 3) {
                 this.style.color = '#ffffff';
-                this.style.textShadow = '0 0 20px rgba(251, 191, 36, 0.8)';
+                this.style.textShadow = '0 0 15px rgba(251, 191, 36, 0.8)';
+                console.log('Third click - opening modal');
                 setTimeout(() => {
                     openFaithModal();
-                    resetClickCount();
-                }, 200);
+                    resetEasterEgg();
+                }, 300);
                 return;
             }
             
-            // Reset after 3 seconds of no clicks
-            clickTimer = setTimeout(resetClickCount, 3000);
+            // Reset after 4 seconds
+            resetTimer = setTimeout(resetEasterEgg, 4000);
         });
     </script>
 
