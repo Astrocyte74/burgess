@@ -1459,9 +1459,35 @@
             const modalImage = document.getElementById('modalImage');
             const modalCaption = document.getElementById('modalCaption');
             
-            modalImage.src = img.src;
-            modalImage.alt = img.alt;
-            modalCaption.textContent = img.alt;
+            // Check if this image is part of a fossil-toggle container
+            const toggleContainer = img.closest('.fossil-toggle');
+            let imageToShow = img;
+            let captionToShow = img.alt;
+            
+            if (toggleContainer) {
+                // Check if we're in living view mode
+                const isShowingLiving = toggleContainer.classList.contains('show-living');
+                
+                if (isShowingLiving) {
+                    // Show the living view image
+                    const livingImg = toggleContainer.querySelector('.living-view img');
+                    if (livingImg) {
+                        imageToShow = livingImg;
+                        captionToShow = livingImg.alt;
+                    }
+                } else {
+                    // Show the fossil view image
+                    const fossilImg = toggleContainer.querySelector('.fossil-view img');
+                    if (fossilImg) {
+                        imageToShow = fossilImg;
+                        captionToShow = fossilImg.alt;
+                    }
+                }
+            }
+            
+            modalImage.src = imageToShow.src;
+            modalImage.alt = captionToShow;
+            modalCaption.textContent = captionToShow;
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
