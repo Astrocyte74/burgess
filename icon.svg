@@ -1,0 +1,44 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="fossil" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#d97706;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#92400e;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bg)" rx="64"/>
+  
+  <!-- Rock layer -->
+  <ellipse cx="256" cy="400" rx="220" ry="60" fill="#374151" opacity="0.6"/>
+  
+  <!-- Fossil creature (simplified Anomalocaris) -->
+  <g fill="url(#fossil)" stroke="#92400e" stroke-width="2">
+    <!-- Main body -->
+    <ellipse cx="256" cy="256" rx="160" ry="40" transform="rotate(0 256 256)"/>
+    
+    <!-- Segments -->
+    <ellipse cx="220" cy="256" rx="120" ry="32" opacity="0.8"/>
+    <ellipse cx="292" cy="256" rx="120" ry="32" opacity="0.8"/>
+    
+    <!-- Front appendages -->
+    <path d="M 120 240 Q 180 200 200 240 Q 180 280 120 260 Z" opacity="0.9"/>
+    <path d="M 120 272 Q 180 312 200 272 Q 180 232 120 252 Z" opacity="0.9"/>
+    
+    <!-- Tail fin -->
+    <path d="M 400 240 Q 440 220 460 256 Q 440 292 400 272 Z" opacity="0.9"/>
+    
+    <!-- Eye -->
+    <circle cx="180" cy="256" r="16" fill="#1f2937"/>
+    <circle cx="184" cy="252" r="6" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Title text -->
+  <text x="256" y="450" text-anchor="middle" fill="#fbbf24" font-family="serif" font-size="32" font-weight="bold">BURGESS</text>
+  <text x="256" y="480" text-anchor="middle" fill="#94a3b8" font-family="serif" font-size="20">508M YEARS</text>
+</svg>
