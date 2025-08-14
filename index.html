@@ -94,6 +94,33 @@
             opacity: 1;
         }
         
+        /* Individual Toggle Buttons */
+        .individual-toggle-btn {
+            background: rgba(16, 23, 42, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: #e5e7eb;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+        
+        .individual-toggle-btn:hover {
+            background: rgba(251, 191, 36, 0.2);
+            border-color: rgba(251, 191, 36, 0.5);
+            color: #f3f4f6;
+            transform: translateY(-1px);
+        }
+        
+        .individual-toggle-btn.active {
+            background: rgba(251, 191, 36, 0.9);
+            border-color: #fbbf24;
+            color: #1e293b;
+        }
+        
         /* Image Modal Styles */
         .image-modal {
             position: fixed;
@@ -2303,11 +2330,18 @@
             
             toggle.classList.remove('show-living');
             
-            // Update button styles
-            fossilBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
-            fossilBtn.classList.remove('border', 'border-amber-fossil', 'text-amber-fossil');
-            livingBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
-            livingBtn.classList.add('border', 'border-amber-fossil', 'text-amber-fossil');
+            // Update button styles - handle both old and new button styles
+            if (fossilBtn.classList.contains('individual-toggle-btn')) {
+                // New style buttons (Wiwaxia, Pikaia)
+                fossilBtn.classList.add('active');
+                livingBtn.classList.remove('active');
+            } else {
+                // Old style buttons (Opabinia, Hallucigenia, Marrella)
+                fossilBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
+                fossilBtn.classList.remove('border', 'border-amber-fossil', 'text-amber-fossil');
+                livingBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
+                livingBtn.classList.add('border', 'border-amber-fossil', 'text-amber-fossil');
+            }
         }
         
         function showLivingViewFor(toggleId) {
@@ -2318,11 +2352,18 @@
             
             toggle.classList.add('show-living');
             
-            // Update button styles
-            livingBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
-            livingBtn.classList.remove('border', 'border-amber-fossil', 'text-amber-fossil');
-            fossilBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
-            fossilBtn.classList.add('border', 'border-amber-fossil', 'text-amber-fossil');
+            // Update button styles - handle both old and new button styles
+            if (livingBtn.classList.contains('individual-toggle-btn')) {
+                // New style buttons (Wiwaxia, Pikaia)
+                livingBtn.classList.add('active');
+                fossilBtn.classList.remove('active');
+            } else {
+                // Old style buttons (Opabinia, Hallucigenia, Marrella)
+                livingBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
+                livingBtn.classList.remove('border', 'border-amber-fossil', 'text-amber-fossil');
+                fossilBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
+                fossilBtn.classList.add('border', 'border-amber-fossil', 'text-amber-fossil');
+            }
         }
         
         // Touch feedback for cards
