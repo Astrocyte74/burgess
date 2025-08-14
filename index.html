@@ -93,9 +93,107 @@
         .fossil-toggle.show-living .living-view {
             opacity: 1;
         }
+        
+        /* Image Modal Styles */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .image-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            max-width: 95vw;
+            max-height: 95vh;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .modal-caption {
+            background: rgba(10, 14, 26, 0.8);
+            color: #e5e7eb;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+        }
+        
+        /* Clickable image cursor */
+        .clickable-image {
+            cursor: zoom-in;
+            transition: all 0.2s ease;
+        }
+        
+        .clickable-image:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body class="bg-cosmic-dark text-white font-sans overflow-x-hidden">
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImageModal()">&times;</button>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div id="modalCaption" class="modal-caption"></div>
+        </div>
+    </div>
     <!-- Mobile Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-cosmic-dark bg-opacity-95 backdrop-blur-sm z-50 p-4 md:p-6">
         <div class="flex justify-between items-center">
@@ -359,7 +457,7 @@
                         <div class="text-limestone-gray text-sm">Tap to learn more</div>
                     </div>
                     <div id="discovery-1909" class="hidden">
-                        <img src="historical/charles-walcott-1900-medium.jpg" alt="Charles Walcott at the Burgess Shale quarry" class="responsive-img mb-4">
+                        <img src="historical/charles-walcott-1900-medium.jpg" alt="Charles Walcott at the Burgess Shale quarry" class="responsive-img mb-4 clickable-image" onclick="openImageModal(this)">
                         <p class="text-limestone-gray leading-relaxed mb-4">
                             Charles Doolittle Walcott, a renowned Smithsonian paleontologist, was exploring these mountains 
                             on horseback when he noticed a slab of shale rich with strange fossils. Intrigued, he returned 
@@ -503,10 +601,10 @@
                     <div class="text-center mb-8">
                         <div class="fossil-toggle mx-auto w-full max-w-sm" id="anomalocaris-toggle">
                             <div class="fossil-view">
-                                <img src="fossils/anomalocaris/anomalocaris-canadensis-medium.jpg" alt="Anomalocaris fossil" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl shadow-2xl">
+                                <img src="fossils/anomalocaris/anomalocaris-canadensis-medium.jpg" alt="Anomalocaris fossil" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl shadow-2xl clickable-image" onclick="openImageModal(this)">
                             </div>
                             <div class="living-view">
-                                <img src="ilustrated_creatures_of_the_burgess_shale/anomalocaris.jpg" alt="Anomalocaris reconstruction" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl shadow-2xl">
+                                <img src="ilustrated_creatures_of_the_burgess_shale/anomalocaris.jpg" alt="Anomalocaris reconstruction" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl shadow-2xl clickable-image" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
@@ -554,10 +652,10 @@
                     <div class="text-center mb-6">
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="opabinia-toggle">
                             <div class="fossil-view">
-                                <img src="fossils/opabinia/opabinia-regalis-small.jpg" alt="Opabinia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                                <img src="fossils/opabinia/opabinia-regalis-small.jpg" alt="Opabinia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                             <div class="living-view">
-                                <img src="ilustrated_creatures_of_the_burgess_shale/Opabinia4.jpg" alt="Opabinia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                                <img src="ilustrated_creatures_of_the_burgess_shale/Opabinia4.jpg" alt="Opabinia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
@@ -587,10 +685,10 @@
                     <div class="text-center mb-6">
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="hallucigenia-toggle">
                             <div class="fossil-view">
-                                <img src="fossils/hallucigenia/hallucigenia-sparsa-small.jpg" alt="Hallucigenia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                                <img src="fossils/hallucigenia/hallucigenia-sparsa-small.jpg" alt="Hallucigenia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                             <div class="living-view">
-                                <img src="ilustrated_creatures_of_the_burgess_shale/hallucigenia.jpg" alt="Hallucigenia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                                <img src="ilustrated_creatures_of_the_burgess_shale/hallucigenia.jpg" alt="Hallucigenia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
@@ -619,10 +717,10 @@
                     <div class="text-center mb-6">
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="marrella-toggle">
                             <div class="fossil-view">
-                                <img src="fossils/marrella/marrella-splendens-small.jpg" alt="Marrella fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                                <img src="fossils/marrella/marrella-splendens-small.jpg" alt="Marrella fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                             <div class="living-view">
-                                <img src="ilustrated_creatures_of_the_burgess_shale/marella4_3.jpg" alt="Marrella reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                                <img src="ilustrated_creatures_of_the_burgess_shale/marella4_3.jpg" alt="Marrella reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
@@ -1249,7 +1347,7 @@
     <section id="visit" class="py-16 md:py-20 bg-cosmic-dark border-t border-amber-fossil border-opacity-20">
         <div class="max-w-sm sm:max-w-md md:max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-8">
             <div class="mb-8 md:mb-12">
-                <img src="landscapes/burgess-shale-yoho-park-medium.jpg" alt="Yoho National Park landscape" class="responsive-img mx-auto rounded-xl mb-6">
+                <img src="landscapes/burgess-shale-yoho-park-medium.jpg" alt="Yoho National Park landscape" class="responsive-img mx-auto rounded-xl mb-6 clickable-image" onclick="openImageModal(this)">
                 <div class="text-4xl md:text-6xl mb-3 md:mb-4">🏔️</div>
                 <h3 class="text-2xl sm:text-3xl font-bold text-amber-fossil mb-3 md:mb-4">Visit the Burgess Shale</h3>
                 <p class="text-base sm:text-lg md:text-xl text-limestone-gray leading-relaxed mb-6">
@@ -1354,6 +1452,40 @@
         
         fossilBtn.addEventListener('click', showFossilView);
         livingBtn.addEventListener('click', showLivingView);
+        
+        // Image Modal Functions
+        function openImageModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalCaption.textContent = img.alt;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+        
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImageModal();
+            }
+        });
         
         // Touch feedback for cards
         document.querySelectorAll('.touch-card').forEach(card => {
