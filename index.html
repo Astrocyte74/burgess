@@ -2511,86 +2511,102 @@
             });
         });
 
-        // Easter Egg: Hidden Faith & Science Modal (Simplified)
-        let easterEggClicks = 0;
-        let resetTimer = null;
-        
-        function openFaithModal() {
-            const modal = document.getElementById('faithScienceModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            console.log('Faith modal opened');
-        }
-        
-        function closeFaithModal() {
-            const modal = document.getElementById('faithScienceModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        function resetEasterEgg() {
-            easterEggClicks = 0;
+        // Easter Egg: Hidden Faith & Science Modal (DOM Ready)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up Easter Egg');
+            
+            let easterEggClicks = 0;
+            let resetTimer = null;
+            
             const yearsStat = document.getElementById('yearsStat');
-            yearsStat.style.color = '';
-            yearsStat.style.textShadow = '';
-            yearsStat.style.transform = '';
-        }
-        
-        // Close modal when clicking outside
-        document.getElementById('faithScienceModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFaithModal();
-            }
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const faithModal = document.getElementById('faithScienceModal');
-                if (faithModal.classList.contains('active')) {
-                    closeFaithModal();
-                }
-            }
-        });
-        
-        // Easter Egg Click Handler
-        document.getElementById('yearsStat').addEventListener('click', function(e) {
-            e.preventDefault();
-            easterEggClicks++;
-            console.log('Easter egg click:', easterEggClicks);
+            const faithModal = document.getElementById('faithScienceModal');
             
-            // Clear existing timer
-            if (resetTimer) {
-                clearTimeout(resetTimer);
-            }
-            
-            // Visual feedback
-            this.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-            
-            // Color progression
-            if (easterEggClicks === 1) {
-                this.style.color = '#fbbf24';
-                console.log('First click - color changed');
-            } else if (easterEggClicks === 2) {
-                this.style.color = '#f59e0b';
-                this.style.textShadow = '0 0 5px rgba(251, 191, 36, 0.5)';
-                console.log('Second click - glow added');
-            } else if (easterEggClicks >= 3) {
-                this.style.color = '#ffffff';
-                this.style.textShadow = '0 0 15px rgba(251, 191, 36, 0.8)';
-                console.log('Third click - opening modal');
-                setTimeout(() => {
-                    openFaithModal();
-                    resetEasterEgg();
-                }, 300);
+            if (!yearsStat) {
+                console.error('yearsStat element not found');
                 return;
             }
             
-            // Reset after 4 seconds
-            resetTimer = setTimeout(resetEasterEgg, 4000);
+            if (!faithModal) {
+                console.error('faithScienceModal element not found');
+                return;
+            }
+            
+            console.log('Easter Egg elements found, adding listeners');
+            
+            function openFaithModal() {
+                faithModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                console.log('Faith modal opened');
+            }
+            
+            function closeFaithModal() {
+                faithModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            function resetEasterEgg() {
+                easterEggClicks = 0;
+                yearsStat.style.color = '';
+                yearsStat.style.textShadow = '';
+                yearsStat.style.transform = '';
+                console.log('Easter egg reset');
+            }
+            
+            // Close modal when clicking outside
+            faithModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeFaithModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && faithModal.classList.contains('active')) {
+                    closeFaithModal();
+                }
+            });
+            
+            // Easter Egg Click Handler
+            yearsStat.addEventListener('click', function(e) {
+                e.preventDefault();
+                easterEggClicks++;
+                console.log('Easter egg click:', easterEggClicks);
+                
+                // Clear existing timer
+                if (resetTimer) {
+                    clearTimeout(resetTimer);
+                }
+                
+                // Visual feedback
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+                
+                // Color progression
+                if (easterEggClicks === 1) {
+                    this.style.color = '#fbbf24';
+                    console.log('First click - color changed');
+                } else if (easterEggClicks === 2) {
+                    this.style.color = '#f59e0b';
+                    this.style.textShadow = '0 0 5px rgba(251, 191, 36, 0.5)';
+                    console.log('Second click - glow added');
+                } else if (easterEggClicks >= 3) {
+                    this.style.color = '#ffffff';
+                    this.style.textShadow = '0 0 15px rgba(251, 191, 36, 0.8)';
+                    console.log('Third click - opening modal');
+                    setTimeout(() => {
+                        openFaithModal();
+                        resetEasterEgg();
+                    }, 300);
+                    return;
+                }
+                
+                // Reset after 4 seconds
+                resetTimer = setTimeout(resetEasterEgg, 4000);
+            });
+            
+            console.log('Easter Egg setup complete');
         });
     </script>
 
