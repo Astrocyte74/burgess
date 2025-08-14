@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Burgess Shale: Windows to the Past</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-dark': '#0a0e1a',
+                        'deep-teal': '#1f4e5f',
+                        'shale-green': '#3a5f3f',
+                        'amber-fossil': '#ffa500',
+                        'limestone-gray': '#6b7280'
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'scroll-hint': 'scroll-hint 2s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes scroll-hint {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+        }
+        .fossil-texture {
+            background-image: radial-gradient(circle at 25% 25%, #ffa500 2px, transparent 2px),
+                              radial-gradient(circle at 75% 75%, #3a5f3f 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Mobile-first responsive images */
+        .responsive-img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+        
+        /* Touch-friendly interactions */
+        .touch-card {
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: all 0.3s ease;
+        }
+        
+        .touch-card:active {
+            transform: scale(0.98);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Better text legibility on mobile */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Fossil comparison toggle */
+        .fossil-toggle {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fossil-view, .living-view {
+            transition: opacity 0.5s ease;
+        }
+        
+        .living-view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        
+        .fossil-toggle.show-living .fossil-view {
+            opacity: 0;
+        }
+        
+        .fossil-toggle.show-living .living-view {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-cosmic-dark text-white font-sans overflow-x-hidden">
+    <!-- Mobile Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-cosmic-dark bg-opacity-95 backdrop-blur-sm z-50 p-4 md:p-6">
+        <div class="flex justify-between items-center">
+            <div class="text-amber-fossil font-bold text-lg">Burgess Shale</div>
+            <button id="menu-toggle" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <div class="hidden md:flex space-x-4 text-xs">
+                <a href="#intro" class="text-limestone-gray hover:text-amber-fossil transition-colors">Home</a>
+                <a href="#formation" class="text-limestone-gray hover:text-amber-fossil transition-colors">Formation</a>
+                <a href="#timeline" class="text-limestone-gray hover:text-amber-fossil transition-colors">Discovery</a>
+                <a href="#creatures" class="text-limestone-gray hover:text-amber-fossil transition-colors">Creatures</a>
+                <a href="#explosion" class="text-limestone-gray hover:text-amber-fossil transition-colors">Explosion</a>
+                <a href="#science" class="text-limestone-gray hover:text-amber-fossil transition-colors">Science</a>
+                <a href="#analogies" class="text-limestone-gray hover:text-amber-fossil transition-colors">Connections</a>
+                <a href="#mountains" class="text-limestone-gray hover:text-amber-fossil transition-colors">Mountains</a>
+                <a href="#visit" class="text-limestone-gray hover:text-amber-fossil transition-colors">Visit</a>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="#intro" class="block py-2 text-limestone-gray">Home</a>
+            <a href="#formation" class="block py-2 text-limestone-gray">Formation</a>
+            <a href="#timeline" class="block py-2 text-limestone-gray">Discovery</a>
+            <a href="#creatures" class="block py-2 text-limestone-gray">Creatures</a>
+            <a href="#explosion" class="block py-2 text-limestone-gray">Explosion</a>
+            <a href="#science" class="block py-2 text-limestone-gray">Science</a>
+            <a href="#analogies" class="block py-2 text-limestone-gray">Connections</a>
+            <a href="#mountains" class="block py-2 text-limestone-gray">Mountains</a>
+            <a href="#visit" class="block py-2 text-limestone-gray">Visit</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Mobile Optimized -->
+    <section id="intro" class="min-h-screen flex flex-col justify-center items-center relative px-4 pt-20">
+        <!-- Animated background particles -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-fossil rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-deep-teal rounded-full animate-float"></div>
+            <div class="absolute top-1/2 left-1/6 w-3 h-3 bg-shale-green rounded-full animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-limestone-gray rounded-full animate-float"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-sm sm:max-w-md md:max-w-2xl">
+            <!-- Main title -->
+            <div class="mb-8 md:mb-12">
+                <div class="text-amber-fossil text-xs sm:text-sm font-mono tracking-[0.2em] mb-4 md:mb-6">
+                    CAMBRIAN • EXPLOSION • 508MYA
+                </div>
+                <h1 class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-none mb-6 md:mb-8">
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-deep-teal via-amber-fossil to-shale-green">
+                        BURGESS
+                    </span>
+                    <span class="block text-white font-light tracking-wider text-3xl sm:text-5xl md:text-7xl lg:text-8xl">
+                        shale
+                    </span>
+                </h1>
+                <div class="w-16 sm:w-24 h-px bg-gradient-to-r from-transparent via-amber-fossil to-transparent mx-auto mb-6 md:mb-8"></div>
+            </div>
+            
+            <!-- Subtitle -->
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-limestone-gray leading-relaxed mb-6 md:mb-8">
+                Journey into Earth's most extraordinary fossil treasure trove<br class="hidden sm:block">
+                <span class="text-amber-fossil font-semibold">Where evolution experimented wildly</span>
+            </p>
+            
+            <!-- Geographic Context -->
+            <div class="bg-cosmic-dark bg-opacity-60 rounded-2xl p-4 md:p-6 mb-8 md:mb-16 max-w-xl mx-auto">
+                <div class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                    <p class="mb-3">
+                        High in the <span class="text-amber-fossil font-semibold">Canadian Rockies</span> of British Columbia, 
+                        this UNESCO World Heritage site captures a pivotal moment in Earth's history: 
+                        the <span class="text-deep-teal font-semibold">Cambrian Explosion</span>.
+                    </p>
+                    <p class="text-xs sm:text-sm text-limestone-gray">
+                        📍 Yoho National Park • 2,300m elevation • Ancient tropical seafloor
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Stats grid - Mobile optimized -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-sm sm:max-w-md md:max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-fossil mb-1 md:mb-2">508M</div>
+                    <div class="text-xs sm:text-sm text-limestone-gray uppercase tracking-wide">Years Ago</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-deep-teal mb-1 md:mb-2">65K+</div>
+                    <div class="text-xs sm:text-sm text-limestone-gray uppercase tracking-wide">Specimens</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-shale-green mb-1 md:mb-2">120+</div>
+                    <div class="text-xs sm:text-sm text-limestone-gray uppercase tracking-wide">Species</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2">1909</div>
+                    <div class="text-xs sm:text-sm text-limestone-gray uppercase tracking-wide">Discovery</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile scroll indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-scroll-hint">
+            <div class="w-6 h-10 border-2 border-amber-fossil rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-amber-fossil rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Geological Formation - How It All Began -->
+    <section id="formation" class="py-16 md:py-24 bg-gradient-to-b from-cosmic-dark via-shale-green to-cosmic-dark relative">
+        <div class="absolute inset-0 fossil-texture opacity-10"></div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    HOW THE <span class="text-amber-fossil">MAGIC</span> HAPPENED
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    The extraordinary story of how soft-bodied creatures became perfectly preserved fossils
+                </p>
+            </div>
+            
+            <!-- Formation Process -->
+            <div class="space-y-8 md:space-y-12">
+                <!-- Step 1: Ancient Reef -->
+                <div class="bg-gradient-to-r from-deep-teal to-cosmic-dark p-6 md:p-8 rounded-3xl border border-deep-teal border-opacity-30">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                        <div class="flex-shrink-0 w-16 h-16 bg-deep-teal bg-opacity-50 rounded-full flex items-center justify-center">
+                            <span class="text-2xl font-black text-deep-teal">1</span>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-xl sm:text-2xl font-bold text-deep-teal mb-3">
+                                Ancient Tropical Reef
+                            </h3>
+                            <p class="text-limestone-gray leading-relaxed mb-4">
+                                508 million years ago, this region lay near the equator under warm tropical seas. 
+                                A massive underwater limestone cliff (the Cathedral Escarpment) towered 160 meters high, 
+                                built by sponges and algae.
+                            </p>
+                            <div class="text-xs text-deep-teal font-mono bg-cosmic-dark bg-opacity-50 px-3 py-1 rounded inline-block">
+                                LOCATION: Ancient North America (Laurentia) • DEPTH: Shallow tropical sea
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Life in the Shadow -->
+                <div class="bg-gradient-to-r from-shale-green to-cosmic-dark p-6 md:p-8 rounded-3xl border border-shale-green border-opacity-30">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                        <div class="flex-shrink-0 w-16 h-16 bg-shale-green bg-opacity-50 rounded-full flex items-center justify-center">
+                            <span class="text-2xl font-black text-shale-green">2</span>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-xl sm:text-2xl font-bold text-shale-green mb-3">
+                                Thriving Deep-Water Community
+                            </h3>
+                            <p class="text-limestone-gray leading-relaxed mb-4">
+                                At the base of this cliff, in a deeper basin, fine mud accumulated and supported 
+                                a rich marine ecosystem. Anomalocaris, Hallucigenia, and hundreds of other strange 
+                                creatures lived on this soft muddy seafloor.
+                            </p>
+                            <div class="text-xs text-shale-green font-mono bg-cosmic-dark bg-opacity-50 px-3 py-1 rounded inline-block">
+                                HABITAT: Deep muddy basin • COMMUNITY: 170+ species discovered
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 3: The Mudslide -->
+                <div class="bg-gradient-to-r from-amber-fossil to-cosmic-dark p-6 md:p-8 rounded-3xl border border-amber-fossil border-opacity-30">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                        <div class="flex-shrink-0 w-16 h-16 bg-amber-fossil bg-opacity-50 rounded-full flex items-center justify-center">
+                            <span class="text-2xl font-black text-cosmic-dark">3</span>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-xl sm:text-2xl font-bold text-amber-fossil mb-3">
+                                Catastrophic Burial
+                            </h3>
+                            <p class="text-limestone-gray leading-relaxed mb-4">
+                                Periodic underwater mudslides, triggered by earthquakes or storms, swept down 
+                                from the reef. These mudflows instantly smothered the seafloor community in 
+                                fine sediment, burying animals alive before they could decay.
+                            </p>
+                            <div class="text-xs text-amber-fossil font-mono bg-cosmic-dark bg-opacity-50 px-3 py-1 rounded inline-block">
+                                TRIGGER: Earthquakes/storms • RESULT: Instant burial in oxygen-poor mud
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Perfect Preservation -->
+                <div class="bg-gradient-to-r from-limestone-gray to-cosmic-dark p-6 md:p-8 rounded-3xl border border-limestone-gray border-opacity-30">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                        <div class="flex-shrink-0 w-16 h-16 bg-limestone-gray bg-opacity-50 rounded-full flex items-center justify-center">
+                            <span class="text-2xl font-black text-cosmic-dark">4</span>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-xl sm:text-2xl font-bold text-limestone-gray mb-3">
+                                Exceptional Preservation
+                            </h3>
+                            <p class="text-limestone-gray leading-relaxed mb-4">
+                                The oxygen-poor mud prevented decay and scavenging. Soft tissues like eyes, 
+                                gills, and digestive tracts were preserved as thin carbon films. Over millions 
+                                of years, the mud compressed into shale rock, creating our "time capsule."
+                            </p>
+                            <div class="text-xs text-limestone-gray font-mono bg-cosmic-dark bg-opacity-50 px-3 py-1 rounded inline-block">
+                                PRESERVATION: Soft tissues as carbon films • DURATION: 508 million years
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Insight Box -->
+            <div class="mt-12 bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-2xl border border-amber-fossil border-opacity-20">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl mb-4">🔬</div>
+                    <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-4">
+                        Why This Matters
+                    </h3>
+                    <p class="text-limestone-gray leading-relaxed max-w-3xl mx-auto">
+                        Normally, soft tissues decay within days. The Burgess Shale's unique conditions created 
+                        "Burgess Shale-type preservation" – capturing delicate anatomy that almost never fossilizes. 
+                        <span class="text-amber-fossil font-semibold">We can see muscle fibers, digestive tracts, 
+                        and even the contents of ancient stomachs!</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discovery Story - Mobile First -->
+    <section id="timeline" class="py-16 md:py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-cosmic-dark via-deep-teal to-cosmic-dark opacity-50"></div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    THE <span class="text-amber-fossil">DISCOVERY</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    A tale of scientific revolution that changed our understanding of life itself
+                </p>
+            </div>
+            
+            <!-- Story cards - Mobile stacked -->
+            <div class="space-y-8 md:space-y-16">
+                <!-- 1909 Discovery -->
+                <div class="touch-card bg-gradient-to-br from-deep-teal to-cosmic-dark p-6 md:p-8 rounded-3xl border border-amber-fossil border-opacity-30"
+                     onclick="toggleDetails('discovery-1909')">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-4 md:mb-6">
+                        <div class="text-4xl sm:text-5xl md:text-6xl">🏔️</div>
+                        <div class="flex-1">
+                            <div class="text-amber-fossil font-mono text-sm">1909</div>
+                            <h3 class="text-xl sm:text-2xl font-bold">The Accident That Changed History</h3>
+                        </div>
+                        <div class="text-limestone-gray text-sm">Tap to learn more</div>
+                    </div>
+                    <div id="discovery-1909" class="hidden">
+                        <img src="historical/charles-walcott-1900-medium.jpg" alt="Charles Walcott at the Burgess Shale quarry" class="responsive-img mb-4">
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            Charles Doolittle Walcott, a renowned Smithsonian paleontologist, was exploring these mountains 
+                            on horseback when he noticed a slab of shale rich with strange fossils. Intrigued, he returned 
+                            the next year with his wife and children to establish a quarry on Fossil Ridge.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            Year after year until 1924, Walcott led packhorses up to the quarry and split the shale layers. 
+                            Working within the scientific views of his time, he initially tried to fit these bizarre creatures 
+                            into known groups, and for decades many were dismissed as oddities or "failed" species.
+                        </p>
+                        <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg mb-4">
+                            <p class="text-amber-fossil text-sm font-semibold">Over 65,000 specimens collected • Shipped to Washington D.C. • Founded the science of exceptional preservation</p>
+                        </div>
+                        <div class="text-xs text-amber-fossil font-mono">
+                            "He had discovered an ancient ecosystem, frozen in stone."
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1960s Revolution -->
+                <div class="touch-card bg-gradient-to-br from-shale-green to-cosmic-dark p-6 md:p-8 rounded-3xl border border-deep-teal border-opacity-50"
+                     onclick="toggleDetails('revolution-1960s')">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-4 md:mb-6">
+                        <div class="text-4xl sm:text-5xl md:text-6xl">🔬</div>
+                        <div class="flex-1">
+                            <div class="text-deep-teal font-mono text-sm">1966-1971</div>
+                            <h3 class="text-xl sm:text-2xl font-bold">The Scientific Revolution</h3>
+                        </div>
+                        <div class="text-limestone-gray text-sm">Tap to learn more</div>
+                    </div>
+                    <div id="revolution-1960s" class="hidden">
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            A new generation of researchers, led by Harry B. Whittington of Cambridge, reopened the 
+                            Burgess Shale story. With fresh eyes and better microscopes, Whittington and his students 
+                            Simon Conway Morris and Derek Briggs painstakingly re-examined Walcott's fossils.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            They realized many were unlike any living animals. Opabinia (with five eyes and a hose-like snout) 
+                            and Hallucigenia (so odd it was originally reconstructed upside-down!) didn't fit into traditional groups.
+                        </p>
+                        <div class="bg-deep-teal bg-opacity-20 p-4 rounded-lg mb-4">
+                            <p class="text-deep-teal text-sm font-semibold">The "Burgess Revision" revealed a much richer and stranger Cambrian world than anyone had imagined</p>
+                        </div>
+                        <div class="text-xs text-deep-teal font-mono">
+                            "Fundamentally changed our understanding of early animal evolution"
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1980s UNESCO Recognition -->
+                <div class="touch-card bg-gradient-to-br from-amber-fossil to-cosmic-dark p-6 md:p-8 rounded-3xl border border-amber-fossil border-opacity-50"
+                     onclick="toggleDetails('unesco-1980s')">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-4 md:mb-6">
+                        <div class="text-4xl sm:text-5xl md:text-6xl">🏛️</div>
+                        <div class="flex-1">
+                            <div class="text-amber-fossil font-mono text-sm">1980-1984</div>
+                            <h3 class="text-xl sm:text-2xl font-bold">UNESCO World Heritage Recognition</h3>
+                        </div>
+                        <div class="text-limestone-gray text-sm">Tap to learn more</div>
+                    </div>
+                    <div id="unesco-1980s" class="hidden">
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            The Burgess Shale's importance was cemented when it was designated a World Heritage Site in 1980, 
+                            later becoming part of the Canadian Rocky Mountain Parks UNESCO site in 1984.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            Stephen Jay Gould's 1989 book "Wonderful Life" popularized the idea of Cambrian life's 
+                            bewildering diversity and the role of chance in evolution, bringing these creatures to public attention.
+                        </p>
+                        <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg mb-4">
+                            <p class="text-amber-fossil text-sm font-semibold">Protected status • Global recognition • Public fascination sparked</p>
+                        </div>
+                        <div class="text-xs text-amber-fossil font-mono">
+                            "Life's history is full of unanticipated diversity" - Stephen Jay Gould
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modern Era -->
+                <div class="touch-card bg-gradient-to-br from-limestone-gray to-cosmic-dark p-6 md:p-8 rounded-3xl border border-limestone-gray border-opacity-50"
+                     onclick="toggleDetails('modern-era')">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-4 md:mb-6">
+                        <div class="text-4xl sm:text-5xl md:text-6xl">🚀</div>
+                        <div class="flex-1">
+                            <div class="text-limestone-gray font-mono text-sm">1990s-Present</div>
+                            <h3 class="text-xl sm:text-2xl font-bold">Modern High-Tech Discoveries</h3>
+                        </div>
+                        <div class="text-limestone-gray text-sm">Tap to learn more</div>
+                    </div>
+                    <div id="modern-era" class="hidden">
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            Field teams from the Royal Ontario Museum, led by Desmond Collins and later Jean-Bernard Caron, 
+                            discovered new fossil beds in Yoho and Kootenay Parks, uncovering dozens of new species beyond Walcott's quarry.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            Modern techniques like CT scanning, elemental mapping, and SEM analysis let scientists peer inside 
+                            fossils without destroying them. Even today, statistical analyses suggest many species remain to be discovered.
+                        </p>
+                        <div class="bg-limestone-gray bg-opacity-20 p-4 rounded-lg mb-4">
+                            <p class="text-limestone-gray text-sm font-semibold">New sites discovered • High-tech analysis • Ongoing discoveries • 170+ species identified</p>
+                        </div>
+                        <div class="text-xs text-limestone-gray font-mono">
+                            "Every year brings new discoveries from this 508-million-year-old treasure trove"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Fossil Gallery - Mobile Optimized -->
+    <section id="creatures" class="py-16 md:py-24 bg-gradient-to-b from-cosmic-dark to-deep-teal">
+        <div class="max-w-sm sm:max-w-md md:max-w-5xl lg:max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    <span class="text-amber-fossil">BIZARRE</span> LIFE
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray mb-6 md:mb-8">
+                    Meet the strangest creatures that ever lived
+                </p>
+                
+                <!-- Toggle between fossil and living views -->
+                <div class="flex justify-center mb-8">
+                    <div class="bg-cosmic-dark bg-opacity-80 p-1 rounded-full">
+                        <button id="fossil-btn" class="px-4 py-2 rounded-full bg-amber-fossil text-cosmic-dark font-semibold text-sm transition-all">
+                            Fossil View
+                        </button>
+                        <button id="living-btn" class="px-4 py-2 rounded-full text-limestone-gray font-semibold text-sm transition-all">
+                            Living View
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured creature - Mobile first with large images -->
+            <div class="mb-8 md:mb-12 bg-gradient-to-r from-cosmic-dark via-deep-teal to-cosmic-dark 
+                       p-6 md:p-12 rounded-3xl border border-amber-fossil border-opacity-20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-amber-fossil opacity-10 rounded-full -mr-12 -mt-12"></div>
+                <div class="relative z-10">
+                    <!-- Large image showcase -->
+                    <div class="text-center mb-8">
+                        <div class="fossil-toggle mx-auto w-full max-w-sm" id="anomalocaris-toggle">
+                            <div class="fossil-view">
+                                <img src="burgess-assets/fossils/anomalocaris/anomalocaris-canadensis-medium.jpg" alt="Anomalocaris fossil" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl shadow-2xl">
+                            </div>
+                            <div class="living-view">
+                                <img src="burgess-assets/ilustrated_creatures_of_the_burgess_shale/anomalocaris.jpg" alt="Anomalocaris reconstruction" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl shadow-2xl">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Title and description -->
+                    <div class="text-center">
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-black text-amber-fossil mb-2">Anomalocaris</h3>
+                        <p class="text-lg sm:text-xl md:text-2xl text-limestone-gray mb-6">canadensis</p>
+                        
+                        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 text-white max-w-2xl mx-auto">
+                            The apex predator of the Cambrian seas. This formidable hunter was a torpedo-shaped animal 
+                            with large compound eyes on stalks and a pair of spiny, segmented appendages at the front.
+                        </p>
+                        <p class="text-base sm:text-lg leading-relaxed mb-8 text-gray-300 max-w-2xl mx-auto">
+                            These appendages were like deadly tongs, grabbing prey such as trilobites and feeding them 
+                            into a round, pineapple-slice-like mouth made of hardened plates with serrated edges. 
+                            <span class="text-amber-fossil font-semibold">Its eyes were some of the most advanced ever found in 500-million-year-old rocks.</span>
+                        </p>
+                        
+                        <div class="grid grid-cols-3 gap-6 md:gap-8 text-center max-w-lg mx-auto">
+                            <div class="bg-cosmic-dark bg-opacity-50 p-4 rounded-lg">
+                                <div class="text-amber-fossil font-bold text-lg mb-1">SIZE</div>
+                                <div class="text-base mb-1">Up to 2m</div>
+                                <div class="text-xs text-limestone-gray">Size of a great white shark</div>
+                            </div>
+                            <div class="bg-cosmic-dark bg-opacity-50 p-4 rounded-lg">
+                                <div class="text-amber-fossil font-bold text-lg mb-1">DIET</div>
+                                <div class="text-base">Apex predator</div>
+                            </div>
+                            <div class="bg-cosmic-dark bg-opacity-50 p-4 rounded-lg">
+                                <div class="text-amber-fossil font-bold text-lg mb-1">UNIQUE</div>
+                                <div class="text-base">Grasping arms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other creatures grid - Mobile responsive with larger images -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Opabinia -->
+                <div class="touch-card bg-shale-green bg-opacity-30 p-6 md:p-8 rounded-2xl border border-shale-green border-opacity-50 
+                           hover:bg-opacity-50 transition-all duration-300">
+                    <!-- Large image for mobile -->
+                    <div class="text-center mb-6">
+                        <div class="fossil-toggle mx-auto w-full max-w-xs" id="opabinia-toggle">
+                            <div class="fossil-view">
+                                <img src="burgess-assets/fossils/opabinia/opabinia-regalis-small.jpg" alt="Opabinia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                            </div>
+                            <div class="living-view">
+                                <img src="burgess-assets/ilustrated_creatures_of_the_burgess_shale/Opabinia4.jpg" alt="Opabinia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-fossil mb-1">Opabinia</h3>
+                        <p class="text-sm text-limestone-gray mb-4">regalis</p>
+                        <p class="text-limestone-gray leading-relaxed mb-3 text-sm sm:text-base">
+                            Imagine a soft, segmented creature with <span class="text-amber-fossil font-semibold">five eyes</span> 
+                            perched on its head and a long flexible proboscis like an elephant's trunk – 
+                            except this "trunk" ends in a claw!
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4 text-xs sm:text-sm">
+                            Its mouth faced backwards, and it used that claw-tipped proboscis to probe mud and snag worms. 
+                            When first revealed to scientists in the 1970s, legend has it the audience burst into laughter.
+                        </p>
+                        <div class="bg-cosmic-dark bg-opacity-50 px-3 py-2 rounded text-xs text-amber-fossil">
+                            <div class="font-mono">LENGTH: 7CM</div>
+                            <div class="text-limestone-gray mt-1">Size of a computer mouse</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hallucigenia -->
+                <div class="touch-card bg-deep-teal bg-opacity-30 p-6 md:p-8 rounded-2xl border border-deep-teal border-opacity-50 
+                           hover:bg-opacity-50 transition-all duration-300">
+                    <!-- Large image for mobile -->
+                    <div class="text-center mb-6">
+                        <div class="fossil-toggle mx-auto w-full max-w-xs" id="hallucigenia-toggle">
+                            <div class="fossil-view">
+                                <img src="burgess-assets/fossils/hallucigenia/hallucigenia-sparsa-small.jpg" alt="Hallucigenia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                            </div>
+                            <div class="living-view">
+                                <img src="burgess-assets/ilustrated_creatures_of_the_burgess_shale/hallucigenia.jpg" alt="Hallucigenia reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-fossil mb-1">Hallucigenia</h3>
+                        <p class="text-sm text-limestone-gray mb-4">sparsa</p>
+                        <p class="text-limestone-gray leading-relaxed mb-3 text-sm sm:text-base">
+                            A worm-like animal with <span class="text-amber-fossil font-semibold">seven pairs of rigid spines</span> 
+                            along its back and seven pairs of soft, tentacle-like legs on its underside.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4 text-xs sm:text-sm">
+                            For decades scientists drew it upside-down and backwards! They finally found its true head 
+                            – with simple eyes and a tooth-lined throat – in 2015. An early ancestor of today's velvet worms.
+                        </p>
+                        <div class="bg-cosmic-dark bg-opacity-50 px-3 py-2 rounded text-xs text-amber-fossil">
+                            <div class="font-mono">LENGTH: 0.5-5CM</div>
+                            <div class="text-limestone-gray mt-1">Size of a paperclip to thumb</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marrella -->
+                <div class="touch-card bg-cosmic-dark bg-opacity-60 p-6 md:p-8 rounded-2xl border border-limestone-gray border-opacity-30 
+                           hover:bg-opacity-80 transition-all duration-300 md:col-span-2">
+                    <!-- Large image for mobile -->
+                    <div class="text-center mb-6">
+                        <div class="fossil-toggle mx-auto w-full max-w-xs" id="marrella-toggle">
+                            <div class="fossil-view">
+                                <img src="burgess-assets/fossils/marrella/marrella-splendens-small.jpg" alt="Marrella fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                            </div>
+                            <div class="living-view">
+                                <img src="burgess-assets/ilustrated_creatures_of_the_burgess_shale/marella4_3.jpg" alt="Marrella reconstruction" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-fossil mb-1">Marrella</h3>
+                        <p class="text-sm text-limestone-gray mb-4">splendens</p>
+                        <p class="text-limestone-gray leading-relaxed mb-3 text-sm sm:text-base">
+                            Delicate arthropod known as the <span class="text-amber-fossil font-semibold">"lace crab."</span> 
+                            The most common Burgess Shale fossil, with spidery legs and delicate antennae.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4 text-xs sm:text-sm">
+                            An early relative of today's spiders and scorpions, Marrella helped scientists understand 
+                            how arthropods diversified in ancient marine ecosystems.
+                        </p>
+                        <div class="bg-cosmic-dark bg-opacity-50 px-3 py-2 rounded text-xs text-amber-fossil">
+                            <div class="font-mono">LENGTH: 2CM</div>
+                            <div class="text-limestone-gray mt-1">Size of a quarter coin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wiwaxia -->
+                <div class="touch-card bg-shale-green bg-opacity-30 p-6 md:p-8 rounded-2xl border border-shale-green border-opacity-50 
+                           hover:bg-opacity-50 transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <div class="fossil-toggle mx-auto w-full max-w-xs" id="wiwaxia-toggle">
+                            <div class="fossil-view">
+                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-stone-600 to-amber-fossil rounded-lg shadow-lg flex items-center justify-center">
+                                    <span class="text-white font-bold">Wiwaxia fossil</span>
+                                </div>
+                            </div>
+                            <div class="living-view">
+                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-shale-green to-green-700 rounded-lg shadow-lg flex items-center justify-center">
+                                    <span class="text-white font-bold">Wiwaxia reconstruction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-fossil mb-1">Wiwaxia</h3>
+                        <p class="text-sm text-limestone-gray mb-4">corrugata</p>
+                        <p class="text-limestone-gray leading-relaxed mb-3 text-sm sm:text-base">
+                            A <span class="text-shale-green font-semibold">"slug in chainmail"</span> - soft underneath but covered 
+                            in overlapping armored scales and two rows of long spines like a spiky mohawk.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4 text-xs sm:text-sm">
+                            This heavily armored herbivore scraped algae from the seafloor with two grinding plates. 
+                            Its defensive spines likely protected it from the newly evolving predators.
+                        </p>
+                        <div class="bg-cosmic-dark bg-opacity-50 px-3 py-2 rounded text-xs text-amber-fossil">
+                            <div class="font-mono">LENGTH: 5CM</div>
+                            <div class="text-limestone-gray mt-1">Size of a large thumb</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pikaia -->
+                <div class="touch-card bg-amber-fossil bg-opacity-30 p-6 md:p-8 rounded-2xl border border-amber-fossil border-opacity-50 
+                           hover:bg-opacity-50 transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <div class="fossil-toggle mx-auto w-full max-w-xs" id="pikaia-toggle">
+                            <div class="fossil-view">
+                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-gray-700 to-amber-fossil rounded-lg shadow-lg flex items-center justify-center">
+                                    <span class="text-white font-bold">Pikaia fossil</span>
+                                </div>
+                            </div>
+                            <div class="living-view">
+                                <div class="w-full h-32 sm:h-40 bg-gradient-to-br from-amber-fossil to-yellow-600 rounded-lg shadow-lg flex items-center justify-center">
+                                    <span class="text-black font-bold">Pikaia reconstruction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-fossil mb-1">Pikaia</h3>
+                        <p class="text-sm text-limestone-gray mb-4">gracilens</p>
+                        <p class="text-limestone-gray leading-relaxed mb-3 text-sm sm:text-base">
+                            <span class="text-amber-fossil font-semibold">Our ancient ancestor!</span> This small, eel-like creature 
+                            is one of the earliest known chordates - the group that includes all vertebrates.
+                        </p>
+                        <p class="text-limestone-gray leading-relaxed mb-4 text-xs sm:text-sm">
+                            With segmented muscle bands and a primitive backbone, Pikaia represents the humble beginnings 
+                            of the lineage that would eventually lead to fish, mammals, and ultimately us.
+                        </p>
+                        <div class="bg-cosmic-dark bg-opacity-50 px-3 py-2 rounded text-xs text-amber-fossil">
+                            <div class="font-mono">LENGTH: 5CM</div>
+                            <div class="text-limestone-gray mt-1">Size of a large thumb</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Cambrian Explosion -->
+    <section id="explosion" class="py-16 md:py-24 bg-gradient-to-b from-deep-teal via-cosmic-dark to-deep-teal relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Animated particles representing the explosion of life -->
+            <div class="absolute top-1/4 left-1/6 w-2 h-2 bg-amber-fossil rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-1/2 right-1/4 w-3 h-3 bg-shale-green rounded-full animate-float"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-deep-teal rounded-full animate-pulse"></div>
+            <div class="absolute top-3/4 right-1/6 w-2 h-2 bg-limestone-gray rounded-full animate-float"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    THE <span class="text-amber-fossil">CAMBRIAN</span><br>
+                    <span class="text-deep-teal">EXPLOSION</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    When life's experiment went into overdrive
+                </p>
+            </div>
+            
+            <!-- Timeline comparison -->
+            <div class="mb-12 bg-cosmic-dark bg-opacity-60 p-6 md:p-8 rounded-3xl">
+                <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-6 text-center">
+                    Life's Timeline
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-4 h-4 bg-gray-600 rounded-full flex-shrink-0"></div>
+                        <div class="flex-1">
+                            <div class="text-sm font-semibold text-gray-400">3.5 billion years ago</div>
+                            <div class="text-limestone-gray">Simple single-celled life emerges</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-4 h-4 bg-deep-teal rounded-full flex-shrink-0"></div>
+                        <div class="flex-1">
+                            <div class="text-sm font-semibold text-deep-teal">600 million years ago</div>
+                            <div class="text-limestone-gray">First multicellular animals (jellyfish-like)</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-6 h-6 bg-amber-fossil rounded-full flex-shrink-0 animate-pulse"></div>
+                        <div class="flex-1">
+                            <div class="text-sm font-semibold text-amber-fossil">541-520 million years ago</div>
+                            <div class="text-white font-semibold">🎆 THE CAMBRIAN EXPLOSION 🎆</div>
+                            <div class="text-xs text-amber-fossil">All major animal body plans appear in just 20 million years!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Before vs After -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Before -->
+                <div class="bg-gray-800 bg-opacity-50 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold text-gray-400 mb-4 text-center">
+                        🌊 BEFORE (Precambrian)
+                    </h3>
+                    <ul class="space-y-3 text-limestone-gray">
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">•</span>
+                            <span>Mostly simple, flat creatures like fronds and discs</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">•</span>
+                            <span>No hard shells, teeth, or eyes</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">•</span>
+                            <span>Few if any predators</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">•</span>
+                            <span>Simple food webs</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">•</span>
+                            <span>Low-energy, passive lifestyle</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center text-xs text-gray-500 italic">
+                        "Like a quiet village"
+                    </div>
+                </div>
+                
+                <!-- After -->
+                <div class="bg-amber-fossil bg-opacity-20 p-6 rounded-2xl border border-amber-fossil border-opacity-30">
+                    <h3 class="text-xl font-bold text-amber-fossil mb-4 text-center">
+                        🚀 AFTER (Cambrian)
+                    </h3>
+                    <ul class="space-y-3 text-white">
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span>Complex body plans: heads, legs, shells, spines</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span>Advanced eyes and sensory organs</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span>Active predators like Anomalocaris</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span>Complex food webs and ecosystems</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span>Swimming, crawling, burrowing lifestyles</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center text-xs text-amber-fossil italic">
+                        "Like New York City!"
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Stats -->
+            <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-2xl">
+                <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-6 text-center">
+                    Explosion by the Numbers
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-black text-amber-fossil mb-2">20M</div>
+                        <div class="text-sm text-limestone-gray">Years for all major<br>body plans to appear</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-deep-teal mb-2">ALL</div>
+                        <div class="text-sm text-limestone-gray">Modern animal groups<br>trace back to this time</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-shale-green mb-2">170+</div>
+                        <div class="text-sm text-limestone-gray">Species found in<br>Burgess Shale alone</div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-limestone-gray leading-relaxed max-w-2xl mx-auto">
+                        <span class="text-amber-fossil font-semibold">The Burgess Shale captures the aftermath</span> of this 
+                        biological "Big Bang" – showing us the incredible diversity of early animal experiments, 
+                        many of which had no modern descendants.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Impact - Mobile optimized -->
+    <section id="science" class="py-16 md:py-24 bg-gradient-to-t from-cosmic-dark via-shale-green to-deep-teal relative">
+        <div class="absolute inset-0 fossil-texture opacity-5"></div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 md:mb-16">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-fossil to-deep-teal">
+                    REVOLUTIONARY
+                </span><br>
+                <span class="text-white">SCIENCE</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-16">
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-2xl border border-amber-fossil border-opacity-20">
+                    <div class="text-3xl md:text-4xl mb-4 text-amber-fossil">🧬</div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Evolution's "Big Bang"</h3>
+                    <p class="text-limestone-gray leading-relaxed text-sm">
+                        Provides hard evidence that major animal body plans appeared in a geologically short time. 
+                        Evolution branched out wildly—many experiments that ultimately went extinct.
+                    </p>
+                </div>
+                
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-2xl border border-deep-teal border-opacity-20">
+                    <div class="text-3xl md:text-4xl mb-4 text-deep-teal">🎲</div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Role of Chance</h3>
+                    <p class="text-limestone-gray leading-relaxed text-sm">
+                        Stephen J. Gould argued that if you "replayed the tape" of life, many Burgess creatures 
+                        might never arise again. Chance played a huge role in evolution.
+                    </p>
+                </div>
+                
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-2xl border border-shale-green border-opacity-20">
+                    <div class="text-3xl md:text-4xl mb-4 text-shale-green">🔬</div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Ongoing Research</h3>
+                    <p class="text-limestone-gray leading-relaxed text-sm">
+                        New sites like Marble Canyon (2012) continue yielding amazing species. 
+                        Modern CT scanning and elemental mapping reveal details without destroying fossils.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Research Impact -->
+            <div class="mb-8 md:mb-16 bg-cosmic-dark bg-opacity-60 p-6 md:p-8 rounded-3xl">
+                <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-6 text-center">
+                    Revolutionary Discoveries
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold text-deep-teal">What We Can See:</h4>
+                        <ul class="space-y-2 text-limestone-gray text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Fossilized muscle fibers and digestive tracts</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Contents of ancient stomachs</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Complex compound eyes with 16,000 lenses</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Fossilized embryos and gut contents</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold text-deep-teal">What We've Learned:</h4>
+                        <ul class="space-y-2 text-limestone-gray text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Sophisticated vision evolved very early</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Early chordate ancestors (our lineage)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Complex ecosystems existed 508 million years ago</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-fossil">•</span>
+                                <span>Many body plans have no modern equivalents</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-xs sm:max-w-sm md:max-w-4xl mx-auto">
+                <blockquote class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light italic leading-relaxed border-l-4 border-amber-fossil pl-4 md:pl-8">
+                    <span class="text-amber-fossil text-4xl md:text-6xl leading-none">"</span>
+                    The Burgess Shale has taught us that the history of life is not a simple story 
+                    of inevitable progress, but a complex tale where chance and contingency 
+                    play starring roles.
+                    <span class="text-amber-fossil text-4xl md:text-6xl leading-none">"</span>
+                </blockquote>
+                <cite class="block text-limestone-gray mt-4 md:mt-8 text-xs sm:text-sm">
+                    — Modern paleontological consensus
+                </cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Analogies Section -->
+    <section id="analogies" class="py-16 md:py-24 bg-gradient-to-b from-cosmic-dark via-deep-teal to-shale-green relative">
+        <!-- Background pattern -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/6 w-2 h-2 bg-amber-fossil rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-1/2 right-1/4 w-3 h-3 bg-shale-green rounded-full animate-float"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-deep-teal rounded-full animate-pulse"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    <span class="text-amber-fossil">ANCIENT</span><br>
+                    <span class="text-deep-teal">CONNECTIONS</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    Bridges between the Cambrian and today
+                </p>
+            </div>
+            
+            <!-- Modern Connections Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Our Ancestors -->
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-3xl border border-amber-fossil border-opacity-20">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🐟➡️🧬</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-4">
+                            Our Distant Ancestors
+                        </h3>
+                    </div>
+                    <p class="text-limestone-gray leading-relaxed mb-4">
+                        <span class="text-amber-fossil font-semibold">Pikaia gracilens</span> - that small, eel-like creature 
+                        found in the Burgess Shale - is one of the earliest known chordates. This means our own lineage 
+                        was swimming in those ancient seas!
+                    </p>
+                    <div class="bg-amber-fossil bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-amber-fossil text-sm font-semibold mb-2">Family Tree Connection:</p>
+                        <p class="text-xs text-limestone-gray">
+                            Pikaia → early fish → amphibians → reptiles → mammals → primates → us
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Arthropod Success -->
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-3xl border border-deep-teal border-opacity-20">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🦂🕷️🦀</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-deep-teal mb-4">
+                            Arthropod Empire
+                        </h3>
+                    </div>
+                    <p class="text-limestone-gray leading-relaxed mb-4">
+                        The Burgess Shale is packed with early arthropods - ancestors of today's most successful animal group. 
+                        <span class="text-deep-teal font-semibold">Canadaspis</span> was an early crustacean, while 
+                        <span class="text-deep-teal font-semibold">Marrella</span> relates to spiders and scorpions.
+                    </p>
+                    <div class="bg-deep-teal bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-deep-teal text-sm font-semibold mb-2">Modern Relatives:</p>
+                        <p class="text-xs text-limestone-gray">
+                            Crabs, lobsters, insects, spiders - arthropods now dominate land and sea
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Hallucigenia Connection -->
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-3xl border border-shale-green border-opacity-20">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">🐛➡️🧸</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-shale-green mb-4">
+                            Living Fossils
+                        </h3>
+                    </div>
+                    <p class="text-limestone-gray leading-relaxed mb-4">
+                        That bizarre spiky <span class="text-shale-green font-semibold">Hallucigenia</span> isn't completely alone! 
+                        Scientists discovered it's related to modern velvet worms - soft, caterpillar-like creatures that 
+                        still creep through tropical forests today.
+                    </p>
+                    <div class="bg-shale-green bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-shale-green text-sm font-semibold mb-2">Smoking Gun Evidence:</p>
+                        <p class="text-xs text-limestone-gray">
+                            2015 study found identical claw structures in Hallucigenia and velvet worm jaws
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Conserved Features -->
+                <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-3xl border border-limestone-gray border-opacity-20">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl md:text-5xl mb-4">👁️⚙️🔄</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-limestone-gray mb-4">
+                            Timeless Designs
+                        </h3>
+                    </div>
+                    <p class="text-limestone-gray leading-relaxed mb-4">
+                        Some features invented in the Cambrian are still used today. The compound eyes of 
+                        <span class="text-limestone-gray font-semibold">Anomalocaris</span> work just like those 
+                        of modern dragonflies and crabs.
+                    </p>
+                    <div class="bg-limestone-gray bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-limestone-gray text-sm font-semibold mb-2">500 Million Year Success:</p>
+                        <p class="text-xs text-limestone-gray">
+                            If it works, why change it? Basic body plans from the Cambrian persist today
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quote -->
+            <div class="text-center max-w-2xl mx-auto">
+                <blockquote class="text-lg md:text-xl italic text-limestone-gray border-l-4 border-amber-fossil pl-6">
+                    "There is Pikaia in the family photo album."
+                </blockquote>
+                <cite class="block text-amber-fossil mt-4 text-sm">
+                    — Paleontologist's reflection on our ancient ancestry
+                </cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rocky Mountain Formation Context -->
+    <section id="mountains" class="py-16 md:py-24 bg-gradient-to-t from-cosmic-dark via-stone-700 to-gray-800 relative">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/6 w-3 h-3 bg-stone-400 rounded-full animate-pulse opacity-30"></div>
+            <div class="absolute top-1/2 right-1/4 w-2 h-2 bg-gray-500 rounded-full animate-float opacity-40"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-stone-300 rounded-full animate-pulse opacity-50"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8">
+                    <span class="text-stone-300">FROM SEA FLOOR</span><br>
+                    <span class="text-amber-fossil">TO MOUNTAINTOP</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray max-w-sm sm:max-w-md md:max-w-3xl mx-auto">
+                    How ancient seafloor became the Canadian Rockies
+                </p>
+            </div>
+            
+            <!-- Mountain Building Process -->
+            <div class="mb-12 bg-cosmic-dark bg-opacity-60 p-6 md:p-8 rounded-3xl">
+                <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-6 text-center">
+                    🏔️ The Great Uplift (80-55 Million Years Ago)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🌊➡️🏔️</div>
+                        <h4 class="text-lg font-semibold text-stone-300 mb-2">1. Collision</h4>
+                        <p class="text-limestone-gray text-sm">
+                            Pacific tectonic plates pushed against North America from the west, 
+                            crumpling ancient seafloor layers like a rug on a hardwood floor.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">⬆️📦</div>
+                        <h4 class="text-lg font-semibold text-stone-300 mb-2">2. Thrust Faulting</h4>
+                        <p class="text-limestone-gray text-sm">
+                            Huge slabs of older rock were detached and shoved eastward on top 
+                            of younger layers, creating parallel mountain ranges.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🗻❄️</div>
+                        <h4 class="text-lg font-semibold text-stone-300 mb-2">3. Erosion & Glaciation</h4>
+                        <p class="text-limestone-gray text-sm">
+                            Rivers and glaciers carved the uplifted rocks into today's sharp peaks, 
+                            exposing the Burgess Shale 2.5 km above sea level.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mountain Ranges Comparison -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Front Ranges -->
+                <div class="bg-stone-800 bg-opacity-50 p-6 rounded-2xl border border-stone-600 border-opacity-30">
+                    <h4 class="text-lg font-bold text-stone-300 mb-4 text-center">
+                        🦷 Front Ranges (Eastern)
+                    </h4>
+                    <div class="space-y-3 text-limestone-gray text-sm">
+                        <div class="flex items-start gap-2">
+                            <span class="text-stone-400">•</span>
+                            <span><strong>Location:</strong> Around Banff, near foothills</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-stone-400">•</span>
+                            <span><strong>Appearance:</strong> Steep, tooth-like limestone peaks (Mt. Rundle)</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-stone-400">•</span>
+                            <span><strong>Rock Type:</strong> Thick Paleozoic limestone layers, tilted 40-50°</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-stone-400">•</span>
+                            <span><strong>Elevation:</strong> Generally 2,500-3,000m peaks</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Ranges -->
+                <div class="bg-amber-fossil bg-opacity-20 p-6 rounded-2xl border border-amber-fossil border-opacity-30">
+                    <h4 class="text-lg font-bold text-amber-fossil mb-4 text-center">
+                        🗻 Main Ranges (Western)
+                    </h4>
+                    <div class="space-y-3 text-limestone-gray text-sm">
+                        <div class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span><strong>Location:</strong> Continental Divide, Lake Louise area</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span><strong>Appearance:</strong> Massive blocky peaks with glaciers (Mt. Victoria)</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span><strong>Rock Type:</strong> Older Cambrian & Precambrian rocks in cores</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-amber-fossil">•</span>
+                            <span><strong>Elevation:</strong> Higher peaks, many exceed 3,300m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Journey from Banff to Golden -->
+            <div class="bg-cosmic-dark bg-opacity-80 p-6 md:p-8 rounded-3xl">
+                <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-6 text-center">
+                    🚗 Geological Road Trip: Banff to Golden
+                </h3>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-stone-700 bg-opacity-50 p-4 rounded-lg">
+                            <div class="text-2xl mb-2">🦷</div>
+                            <div class="text-stone-300 font-semibold">Banff</div>
+                            <div class="text-xs text-limestone-gray mt-1">Front Ranges<br>Tilted limestone</div>
+                        </div>
+                        <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg">
+                            <div class="text-2xl mb-2">🗻</div>
+                            <div class="text-amber-fossil font-semibold">Lake Louise</div>
+                            <div class="text-xs text-limestone-gray mt-1">Main Ranges<br>Continental Divide</div>
+                        </div>
+                        <div class="bg-deep-teal bg-opacity-20 p-4 rounded-lg">
+                            <div class="text-2xl mb-2">🦕</div>
+                            <div class="text-deep-teal font-semibold">Field/Yoho</div>
+                            <div class="text-xs text-limestone-gray mt-1">Burgess Shale<br>Cambrian rocks</div>
+                        </div>
+                        <div class="bg-gray-600 bg-opacity-20 p-4 rounded-lg">
+                            <div class="text-2xl mb-2">🏔️</div>
+                            <div class="text-gray-400 font-semibold">Golden</div>
+                            <div class="text-xs text-limestone-gray mt-1">Rocky Mountain Trench<br>End of Rockies</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center max-w-3xl mx-auto">
+                        <p class="text-limestone-gray leading-relaxed mb-4">
+                            This journey takes you through <span class="text-amber-fossil font-semibold">500+ million years</span> 
+                            of geological history. You cross from tilted limestone shark-teeth to massive ice-clad peaks, 
+                            passing the very site where Burgess Shale creatures lived and died.
+                        </p>
+                        <div class="bg-amber-fossil bg-opacity-10 p-4 rounded-lg">
+                            <p class="text-amber-fossil text-sm font-semibold">
+                                The Burgess Shale sits where Cambrian mud met an ancient limestone reef - 
+                                now lifted 2.3 km above sea level by the awesome power of mountain building!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Visit Info -->
+    <section id="visit" class="py-16 md:py-20 bg-cosmic-dark border-t border-amber-fossil border-opacity-20">
+        <div class="max-w-sm sm:max-w-md md:max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-8">
+            <div class="mb-8 md:mb-12">
+                <img src="landscapes/burgess-shale-yoho-park-medium.jpg" alt="Yoho National Park landscape" class="responsive-img mx-auto rounded-xl mb-6">
+                <div class="text-4xl md:text-6xl mb-3 md:mb-4">🏔️</div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-amber-fossil mb-3 md:mb-4">Visit the Burgess Shale</h3>
+                <p class="text-base sm:text-lg md:text-xl text-limestone-gray leading-relaxed mb-6">
+                    Experience these wonders firsthand at Yoho National Park, British Columbia.<br class="hidden sm:block">
+                    A UNESCO World Heritage Site preserving 508 million years of evolutionary history.
+                </p>
+            </div>
+            
+            <!-- Location Details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-deep-teal bg-opacity-20 p-6 rounded-2xl border border-deep-teal border-opacity-30">
+                    <h4 class="text-lg font-bold text-deep-teal mb-4">📍 Location & Access</h4>
+                    <ul class="space-y-2 text-limestone-gray text-sm">
+                        <li><span class="text-deep-teal font-semibold">Quarry Location:</span> Mount Field & Mount Stephen</li>
+                        <li><span class="text-deep-teal font-semibold">Elevation:</span> 2,300m (7,500 ft) above sea level</li>
+                        <li><span class="text-deep-teal font-semibold">Near Town:</span> Field, British Columbia</li>
+                        <li><span class="text-deep-teal font-semibold">Park:</span> Yoho National Park</li>
+                        <li><span class="text-deep-teal font-semibold">Protection:</span> UNESCO World Heritage Site (1984)</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-amber-fossil bg-opacity-20 p-6 rounded-2xl border border-amber-fossil border-opacity-30">
+                    <h4 class="text-lg font-bold text-amber-fossil mb-4">🥾 Visiting Guidelines</h4>
+                    <ul class="space-y-2 text-limestone-gray text-sm">
+                        <li><span class="text-amber-fossil font-semibold">Tours:</span> Guided hikes only (reservation required)</li>
+                        <li><span class="text-amber-fossil font-semibold">Season:</span> Summer months (weather permitting)</li>
+                        <li><span class="text-amber-fossil font-semibold">Difficulty:</span> Moderate to strenuous hiking</li>
+                        <li><span class="text-amber-fossil font-semibold">Collecting:</span> Strictly prohibited (protected site)</li>
+                        <li><span class="text-amber-fossil font-semibold">Booking:</span> Through Parks Canada</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Geological Context -->
+            <div class="bg-cosmic-dark bg-opacity-60 p-6 md:p-8 rounded-3xl mb-8">
+                <h4 class="text-xl font-bold text-amber-fossil mb-4 text-center">
+                    From Ancient Sea Floor to Mountain Top
+                </h4>
+                <p class="text-limestone-gray leading-relaxed text-center max-w-3xl mx-auto">
+                    The fossils that once lay at the bottom of a tropical sea are now found high in the Canadian Rockies. 
+                    During the mountain-building that formed the Rockies (80-55 million years ago), these ancient sea floor 
+                    layers were thrust up and eastward, lifting the Burgess Shale 2.5 km above sea level.
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 md:space-x-8 text-xs sm:text-sm text-limestone-gray">
+                <div>UNESCO World Heritage Site</div>
+                <div class="hidden sm:block">•</div>
+                <div>Guided Tours Available</div>
+                <div class="hidden sm:block">•</div>
+                <div>Advance Reservations Required</div>
+                <div class="hidden sm:block">•</div>
+                <div>Protected for Science</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Expandable content toggle
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('hidden');
+        }
+        
+        // Fossil/Living view toggle
+        const fossilBtn = document.getElementById('fossil-btn');
+        const livingBtn = document.getElementById('living-btn');
+        const fossilToggles = document.querySelectorAll('.fossil-toggle');
+        
+        function showFossilView() {
+            fossilToggles.forEach(toggle => {
+                toggle.classList.remove('show-living');
+            });
+            fossilBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
+            fossilBtn.classList.remove('text-limestone-gray');
+            livingBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
+            livingBtn.classList.add('text-limestone-gray');
+        }
+        
+        function showLivingView() {
+            fossilToggles.forEach(toggle => {
+                toggle.classList.add('show-living');
+            });
+            livingBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
+            livingBtn.classList.remove('text-limestone-gray');
+            fossilBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
+            fossilBtn.classList.add('text-limestone-gray');
+        }
+        
+        fossilBtn.addEventListener('click', showFossilView);
+        livingBtn.addEventListener('click', showLivingView);
+        
+        // Touch feedback for cards
+        document.querySelectorAll('.touch-card').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Prevent zoom on double tap for better mobile experience
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Add smooth scroll behavior for older browsers
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
