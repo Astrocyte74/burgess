@@ -183,6 +183,83 @@
             transform: scale(1.02);
             filter: brightness(1.1);
         }
+        
+        /* Floating Navigation Menu */
+        .floating-nav {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 900;
+        }
+        
+        .nav-toggle-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffa500, #1f4e5f);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 165, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 165, 0, 0.4);
+        }
+        
+        .nav-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+        }
+        
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-item {
+            display: block;
+            color: #e5e7eb;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+        }
+        
+        .nav-item:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 165, 0, 0.2);
+            color: #ffa500;
+            transform: translateX(5px);
+        }
+        
+        .nav-item .nav-icon {
+            margin-right: 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body class="bg-cosmic-dark text-white font-sans overflow-x-hidden">
@@ -192,6 +269,42 @@
             <button class="modal-close" onclick="closeImageModal()">&times;</button>
             <img id="modalImage" class="modal-image" src="" alt="">
             <div id="modalCaption" class="modal-caption"></div>
+        </div>
+    </div>
+
+    <!-- Floating Navigation Menu -->
+    <div class="floating-nav">
+        <button class="nav-toggle-btn" onclick="toggleNavMenu()" id="navToggle">
+            🧭
+        </button>
+        <div class="nav-menu" id="navMenu">
+            <a href="#hero" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">🏔️</span>Burgess Shale
+            </a>
+            <a href="#discovery" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">⛏️</span>Discovery
+            </a>
+            <a href="#formation" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">🌍</span>Formation
+            </a>
+            <a href="#creatures" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">🦕</span>Creatures
+            </a>
+            <a href="#more-creatures" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">🦐</span>More Wonders
+            </a>
+            <a href="#cambrian" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">💥</span>Cambrian Explosion
+            </a>
+            <a href="#excavation" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">🔬</span>Modern Techniques
+            </a>
+            <a href="#analogies" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">🔗</span>Connections
+            </a>
+            <a href="#visit" class="nav-item" onclick="closeNavMenu()">
+                <span class="nav-icon">📍</span>Visit Info
+            </a>
         </div>
     </div>
     <!-- Mobile Navigation -->
@@ -686,6 +799,15 @@
                            hover:bg-opacity-50 transition-all duration-300">
                     <!-- Large image for mobile -->
                     <div class="text-center mb-6">
+                        <!-- Individual Toggle Buttons -->
+                        <div class="flex justify-center gap-2 mb-4">
+                            <button onclick="showFossilViewFor('opabinia-toggle')" class="px-3 py-1 text-xs bg-amber-fossil text-cosmic-dark rounded-full font-semibold transition-all duration-300 hover:scale-105" id="opabinia-fossil-btn">
+                                🦴 Fossil
+                            </button>
+                            <button onclick="showLivingViewFor('opabinia-toggle')" class="px-3 py-1 text-xs border border-amber-fossil text-amber-fossil rounded-full font-semibold transition-all duration-300 hover:scale-105" id="opabinia-living-btn">
+                                🔬 Living
+                            </button>
+                        </div>
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="opabinia-toggle">
                             <div class="fossil-view">
                                 <img src="fossils/opabinia/opabinia-regalis-small.jpg" alt="Opabinia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
@@ -719,6 +841,15 @@
                            hover:bg-opacity-50 transition-all duration-300">
                     <!-- Large image for mobile -->
                     <div class="text-center mb-6">
+                        <!-- Individual Toggle Buttons -->
+                        <div class="flex justify-center gap-2 mb-4">
+                            <button onclick="showFossilViewFor('hallucigenia-toggle')" class="px-3 py-1 text-xs bg-amber-fossil text-cosmic-dark rounded-full font-semibold transition-all duration-300 hover:scale-105" id="hallucigenia-fossil-btn">
+                                🦴 Fossil
+                            </button>
+                            <button onclick="showLivingViewFor('hallucigenia-toggle')" class="px-3 py-1 text-xs border border-amber-fossil text-amber-fossil rounded-full font-semibold transition-all duration-300 hover:scale-105" id="hallucigenia-living-btn">
+                                🔬 Living
+                            </button>
+                        </div>
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="hallucigenia-toggle">
                             <div class="fossil-view">
                                 <img src="fossils/hallucigenia/hallucigenia-sparsa-small.jpg" alt="Hallucigenia fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
@@ -751,6 +882,15 @@
                            hover:bg-opacity-80 transition-all duration-300 md:col-span-2">
                     <!-- Large image for mobile -->
                     <div class="text-center mb-6">
+                        <!-- Individual Toggle Buttons -->
+                        <div class="flex justify-center gap-2 mb-4">
+                            <button onclick="showFossilViewFor('marrella-toggle')" class="px-3 py-1 text-xs bg-amber-fossil text-cosmic-dark rounded-full font-semibold transition-all duration-300 hover:scale-105" id="marrella-fossil-btn">
+                                🦴 Fossil
+                            </button>
+                            <button onclick="showLivingViewFor('marrella-toggle')" class="px-3 py-1 text-xs border border-amber-fossil text-amber-fossil rounded-full font-semibold transition-all duration-300 hover:scale-105" id="marrella-living-btn">
+                                🔬 Living
+                            </button>
+                        </div>
                         <div class="fossil-toggle mx-auto w-full max-w-xs" id="marrella-toggle">
                             <div class="fossil-view">
                                 <img src="fossils/marrella/marrella-splendens-small.jpg" alt="Marrella fossil" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg clickable-image" onclick="openImageModal(this)">
@@ -1754,6 +1894,58 @@
                 closeImageModal();
             }
         });
+        
+        // Floating Navigation Functions
+        function toggleNavMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+        
+        function closeNavMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+        }
+        
+        // Close nav menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+        
+        // Individual Creature Toggle Functions
+        function showFossilViewFor(toggleId) {
+            const toggle = document.getElementById(toggleId);
+            const creatureName = toggleId.replace('-toggle', '');
+            const fossilBtn = document.getElementById(creatureName + '-fossil-btn');
+            const livingBtn = document.getElementById(creatureName + '-living-btn');
+            
+            toggle.classList.remove('show-living');
+            
+            // Update button styles
+            fossilBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
+            fossilBtn.classList.remove('border', 'border-amber-fossil', 'text-amber-fossil');
+            livingBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
+            livingBtn.classList.add('border', 'border-amber-fossil', 'text-amber-fossil');
+        }
+        
+        function showLivingViewFor(toggleId) {
+            const toggle = document.getElementById(toggleId);
+            const creatureName = toggleId.replace('-toggle', '');
+            const fossilBtn = document.getElementById(creatureName + '-fossil-btn');
+            const livingBtn = document.getElementById(creatureName + '-living-btn');
+            
+            toggle.classList.add('show-living');
+            
+            // Update button styles
+            livingBtn.classList.add('bg-amber-fossil', 'text-cosmic-dark');
+            livingBtn.classList.remove('border', 'border-amber-fossil', 'text-amber-fossil');
+            fossilBtn.classList.remove('bg-amber-fossil', 'text-cosmic-dark');
+            fossilBtn.classList.add('border', 'border-amber-fossil', 'text-amber-fossil');
+        }
         
         // Touch feedback for cards
         document.querySelectorAll('.touch-card').forEach(card => {
