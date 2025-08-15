@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Deep Time Perspective - Burgess Shale</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-dark': '#0a0e1a',
+                        'deep-teal': '#1f4e5f',
+                        'shale-green': '#3a5f3f',
+                        'amber-fossil': '#ffa500',
+                        'limestone-gray': '#e5e7eb'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0e1a 0%, #1e3a8a 50%, #0f172a 100%);
+            min-height: 100vh;
+        }
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(8) { animation-delay: 0.8s; }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- Header -->
+    <header class="bg-cosmic-dark bg-opacity-90 backdrop-blur-sm sticky top-0 z-40 border-b border-amber-fossil border-opacity-20">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-amber-fossil hover:text-yellow-300 transition-colors text-sm flex items-center">
+                    ← Back to Burgess Shale
+                </a>
+                <h1 class="text-lg md:text-xl font-bold text-amber-fossil text-center">
+                    ⏰ Deep Time
+                </h1>
+                <div class="w-32"></div> <!-- Spacer for centering -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <article>
+            <header class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-amber-fossil mb-4">
+                    Earth's 4.54 Billion Year History
+                </h1>
+                <p class="text-gray-300 text-lg mb-6">
+                    Compressed into a Single 24-Hour Day
+                </p>
+                <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                    <p class="text-cyan-300 text-base leading-relaxed">
+                        To help visualize the immense span of Earth's history, imagine compressing all 4.54 billion years into just one day. In this timeline, the Burgess Shale creatures lived in the final hour before midnight.
+                    </p>
+                </div>
+            </header>
+
+            <!-- Timeline Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-cyan-300 mb-8 text-center">The 24-Hour Timeline</h2>
+                <div class="space-y-6">
+                    
+                    <div class="timeline-item bg-gradient-to-r from-red-900 to-orange-900 p-6 rounded-lg border-l-4 border-red-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-orange-300">00:00 (Midnight)</h3>
+                            <span class="text-gray-300 text-sm">4.54 billion years ago</span>
+                        </div>
+                        <p class="text-gray-200">Earth forms from cosmic dust and debris</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-blue-900 to-teal-900 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-300">04:00 (4 AM)</h3>
+                            <span class="text-gray-300 text-sm">3.8 billion years ago</span>
+                        </div>
+                        <p class="text-gray-200">First life appears - simple bacteria in the oceans</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-green-900 to-emerald-900 p-6 rounded-lg border-l-4 border-green-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-green-300">12:30 (12:30 PM)</h3>
+                            <span class="text-gray-300 text-sm">2.4 billion years ago</span>
+                        </div>
+                        <p class="text-gray-200">Great Oxidation Event - Oxygen fills the atmosphere for the first time</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-purple-900 to-pink-900 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-purple-300">18:00 (6 PM)</h3>
+                            <span class="text-gray-300 text-sm">1.0 billion years ago</span>
+                        </div>
+                        <p class="text-gray-200">First complex cells with nuclei evolve</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-indigo-900 to-blue-900 p-6 rounded-lg border-l-4 border-indigo-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-indigo-300">21:04 (9:04 PM)</h3>
+                            <span class="text-gray-300 text-sm">600 million years ago</span>
+                        </div>
+                        <p class="text-gray-200">Ediacaran biota - First large, complex multicellular life</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-amber-900 to-yellow-900 p-6 rounded-lg border-l-4 border-amber-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-amber-300">21:21 (9:21 PM)</h3>
+                            <span class="text-gray-300 text-sm">541 million years ago</span>
+                        </div>
+                        <p class="text-gray-200"><strong>Cambrian Explosion begins!</strong> - Incredible diversity of life, including early versions of all major animal groups</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-teal-900 to-cyan-900 p-6 rounded-lg border-l-4 border-teal-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-teal-300">21:28 (9:28 PM)</h3>
+                            <span class="text-gray-300 text-sm">508 million years ago</span>
+                        </div>
+                        <p class="text-gray-200"><strong>🦕 BURGESS SHALE creatures live here!</strong> - Peak of the Middle Cambrian's experimental life forms</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-emerald-900 to-green-900 p-6 rounded-lg border-l-4 border-emerald-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-emerald-300">21:31 (9:31 PM)</h3>
+                            <span class="text-gray-300 text-sm">470 million years ago</span>
+                        </div>
+                        <p class="text-gray-200">First plants colonize land</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-red-800 to-pink-800 p-6 rounded-lg border-l-4 border-red-400">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-red-300">23:41 (11:41 PM)</h3>
+                            <span class="text-gray-300 text-sm">66 million years ago</span>
+                        </div>
+                        <p class="text-gray-200">Dinosaurs go extinct (asteroid impact)</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-gray-800 to-slate-800 p-6 rounded-lg border-l-4 border-gray-400">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-300">23:59:58 (11:59:58 PM)</h3>
+                            <span class="text-gray-300 text-sm">200,000 years ago</span>
+                        </div>
+                        <p class="text-gray-200">Modern humans (Homo sapiens) appear</p>
+                    </div>
+
+                    <div class="timeline-item bg-gradient-to-r from-yellow-800 to-amber-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-yellow-300">23:59:59.9 (11:59:59.9 PM)</h3>
+                            <span class="text-gray-300 text-sm">10,000 years ago</span>
+                        </div>
+                        <p class="text-gray-200">Agriculture begins - Human civilization starts</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Mind-Blowing Facts Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-cyan-300 mb-8 text-center">Mind-Blowing Perspective</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-amber-fossil mb-3">🕒 If Earth's history = 1 day</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            All of recorded human history (≈5,000 years) would last only <strong>0.1 seconds</strong> - less than a blink of an eye before midnight.
+                        </p>
+                    </div>
+
+                    <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-amber-fossil mb-3">🦕 Dinosaur Dominance</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            Dinosaurs ruled Earth for 165 million years. In our 24-hour timeline, that's <strong>nearly 1 hour</strong> - from 22:44 PM to 23:41 PM.
+                        </p>
+                    </div>
+
+                    <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-amber-fossil mb-3">🌊 Ocean Dominance</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            Life existed only in the oceans for <strong>85% of Earth's history</strong> - from 4 AM until 9:31 PM. Land was completely barren!
+                        </p>
+                    </div>
+
+                    <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-amber-fossil mb-3">🔥 The Great Wait</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            It took <strong>3 billion years</strong> to go from first bacteria to complex life - that's from 4 AM to 6 PM with just microbes!
+                        </p>
+                    </div>
+
+                    <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-amber-fossil mb-3">💨 Oxygen Revolution</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            For the first <strong>half of Earth's existence</strong>, there was virtually no oxygen in the atmosphere. We couldn't have survived until after lunch!
+                        </p>
+                    </div>
+
+                    <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-amber-fossil mb-3">🚀 Recent Explosion</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            The entire age of complex life - from Burgess Shale to today - represents only the <strong>final 2.5 hours</strong> of Earth's day.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Burgess Connection -->
+            <section class="mb-8">
+                <div class="bg-gradient-to-r from-teal-900 to-cyan-900 p-8 rounded-lg border border-teal-500">
+                    <h2 class="text-2xl font-bold text-teal-300 mb-4 text-center">🌟 The Burgess Shale Connection</h2>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        When you look at Burgess Shale fossils, you're seeing creatures that lived during one of the most remarkable 7 minutes in Earth's entire 24-hour history - from 21:21 to 21:28 PM. This brief window saw an explosion of biological creativity that has never been equaled.
+                    </p>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        These weren't just any creatures - they were the experimental prototypes for virtually every major form of animal life that would follow. In those 7 minutes of deep time, nature was testing out body plans that would define the next 500+ million years of animal evolution.
+                    </p>
+                    <div class="text-center">
+                        <a href="index.html" class="inline-block bg-amber-fossil text-cosmic-dark px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition-colors">
+                            Explore These Ancient Pioneers →
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-cosmic-dark bg-opacity-90 border-t border-amber-fossil border-opacity-20 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <a href="index.html" class="text-amber-fossil hover:text-yellow-300 transition-colors">
+                ← Return to Burgess Shale Explorer
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
