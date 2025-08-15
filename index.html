@@ -1228,7 +1228,7 @@
                 </p>
             </div>
             
-            <!-- Timeline comparison with Deep Time Perspective -->
+            <!-- Interactive Scrollable Timeline with Digital Clock -->
             <div class="mb-12 bg-cosmic-dark bg-opacity-60 p-6 md:p-8 rounded-3xl">
                 <h3 class="text-xl md:text-2xl font-bold text-amber-fossil mb-4 text-center">
                     Life's Timeline
@@ -1237,46 +1237,146 @@
                     <p class="text-cyan-300 text-sm md:text-base mb-2">
                         ⏰ <strong>If Earth's 4.54 billion year history = 1 day</strong>
                     </p>
-                    <p class="text-gray-300 text-xs md:text-sm">
-                        The Cambrian Explosion happened at 9:21 PM, Burgess creatures lived at 9:28 PM
+                    <p class="text-gray-300 text-xs md:text-sm mb-4">
+                        Scroll through time and watch the clock change!
                     </p>
+                    
+                    <!-- Digital Clock Display -->
+                    <div class="bg-black bg-opacity-60 rounded-lg p-4 mb-4 max-w-xs mx-auto border border-amber-fossil border-opacity-30">
+                        <div class="text-center">
+                            <div id="deepTimeClock" class="text-2xl md:text-3xl font-mono font-bold text-amber-fossil mb-1">
+                                00:00:00
+                            </div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">EARTH TIME</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-4 h-4 bg-gray-600 rounded-full flex-shrink-0"></div>
-                        <div class="flex-1">
-                            <div class="text-sm font-semibold text-gray-400">3.5 billion years ago</div>
-                            <div class="text-limestone-gray">Simple single-celled life emerges</div>
-                            <div class="text-xs text-gray-500 italic">Deep Time: 4:00 AM</div>
+                <!-- Scrollable Timeline Container -->
+                <div class="relative">
+                    <div class="text-xs text-gray-400 text-center mb-2">👆 Scroll to travel through time 👆</div>
+                    <div id="timelineContainer" class="max-h-64 overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-amber-fossil space-y-6 p-4 bg-black bg-opacity-30 rounded-lg border border-gray-700">
+                        
+                        <!-- Earth Forms -->
+                        <div class="timeline-item flex items-center gap-4" data-time="00:00" data-years="4.54">
+                            <div class="w-6 h-6 bg-red-600 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-red-400">4.54 billion years ago</div>
+                                <div class="text-limestone-gray">Earth forms from cosmic dust and debris</div>
+                                <div class="text-xs text-red-300 italic">🌍 Our planet is born</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-4 h-4 bg-deep-teal rounded-full flex-shrink-0"></div>
-                        <div class="flex-1">
-                            <div class="text-sm font-semibold text-cyan-300">600 million years ago</div>
-                            <div class="text-limestone-gray">First multicellular animals (jellyfish-like)</div>
-                            <div class="text-xs text-cyan-400 italic">Deep Time: 9:04 PM</div>
+
+                        <!-- First Life -->
+                        <div class="timeline-item flex items-center gap-4" data-time="04:00" data-years="3.8">
+                            <div class="w-5 h-5 bg-blue-600 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-blue-400">3.8 billion years ago</div>
+                                <div class="text-limestone-gray">First life appears - simple bacteria</div>
+                                <div class="text-xs text-blue-300 italic">🦠 Life begins in the oceans</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-6 h-6 bg-amber-fossil rounded-full flex-shrink-0 animate-pulse"></div>
-                        <div class="flex-1">
-                            <div class="text-sm font-semibold text-amber-fossil">541-520 million years ago</div>
-                            <div class="text-white font-semibold">🎆 THE CAMBRIAN EXPLOSION 🎆</div>
-                            <div class="text-xs text-amber-fossil">All major animal body plans appear in just 20 million years!</div>
-                            <div class="text-xs text-amber-400 italic font-semibold">Deep Time: 9:21-9:28 PM ← We are here!</div>
+
+                        <!-- Great Oxidation -->
+                        <div class="timeline-item flex items-center gap-4" data-time="12:30" data-years="2.4">
+                            <div class="w-5 h-5 bg-green-600 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-green-400">2.4 billion years ago</div>
+                                <div class="text-limestone-gray">Great Oxidation Event</div>
+                                <div class="text-xs text-green-300 italic">💨 Atmosphere fills with oxygen</div>
+                            </div>
                         </div>
+
+                        <!-- Complex Cells -->
+                        <div class="timeline-item flex items-center gap-4" data-time="18:00" data-years="1.0">
+                            <div class="w-5 h-5 bg-purple-600 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-purple-400">1.0 billion years ago</div>
+                                <div class="text-limestone-gray">First complex cells with nuclei</div>
+                                <div class="text-xs text-purple-300 italic">🧬 Cellular complexity emerges</div>
+                            </div>
+                        </div>
+
+                        <!-- Ediacaran Biota -->
+                        <div class="timeline-item flex items-center gap-4" data-time="21:04" data-years="0.6">
+                            <div class="w-5 h-5 bg-indigo-600 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-indigo-400">600 million years ago</div>
+                                <div class="text-limestone-gray">First large multicellular life</div>
+                                <div class="text-xs text-indigo-300 italic">🌊 Ediacaran creatures appear</div>
+                            </div>
+                        </div>
+
+                        <!-- Cambrian Explosion Begins -->
+                        <div class="timeline-item flex items-center gap-4" data-time="21:21" data-years="0.541">
+                            <div class="w-6 h-6 bg-amber-fossil rounded-full flex-shrink-0 shadow-lg animate-pulse"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-amber-fossil">541 million years ago</div>
+                                <div class="text-white font-semibold">🎆 CAMBRIAN EXPLOSION BEGINS! 🎆</div>
+                                <div class="text-xs text-amber-fossil">All major animal body plans appear!</div>
+                            </div>
+                        </div>
+
+                        <!-- Burgess Shale Peak -->
+                        <div class="timeline-item flex items-center gap-4" data-time="21:28" data-years="0.508">
+                            <div class="w-8 h-8 bg-gradient-to-r from-amber-fossil to-yellow-400 rounded-full flex-shrink-0 shadow-xl animate-pulse border-2 border-white"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-amber-fossil">508 million years ago</div>
+                                <div class="text-white font-bold">🦕 BURGESS SHALE CREATURES! 🦕</div>
+                                <div class="text-xs text-amber-400 font-semibold">Peak of experimental life forms ← WE ARE HERE!</div>
+                            </div>
+                        </div>
+
+                        <!-- Plants on Land -->
+                        <div class="timeline-item flex items-center gap-4" data-time="21:31" data-years="0.47">
+                            <div class="w-5 h-5 bg-emerald-600 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-emerald-400">470 million years ago</div>
+                                <div class="text-limestone-gray">First plants colonize land</div>
+                                <div class="text-xs text-emerald-300 italic">🌱 Life leaves the ocean</div>
+                            </div>
+                        </div>
+
+                        <!-- Dinosaur Extinction -->
+                        <div class="timeline-item flex items-center gap-4" data-time="23:41" data-years="0.066">
+                            <div class="w-5 h-5 bg-red-500 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-red-400">66 million years ago</div>
+                                <div class="text-limestone-gray">Dinosaurs go extinct</div>
+                                <div class="text-xs text-red-300 italic">☄️ Asteroid impact event</div>
+                            </div>
+                        </div>
+
+                        <!-- Modern Humans -->
+                        <div class="timeline-item flex items-center gap-4" data-time="23:59:58" data-years="0.0002">
+                            <div class="w-4 h-4 bg-gray-400 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-gray-300">200,000 years ago</div>
+                                <div class="text-limestone-gray">Modern humans appear</div>
+                                <div class="text-xs text-gray-400 italic">👥 Homo sapiens emerge</div>
+                            </div>
+                        </div>
+
+                        <!-- Agriculture -->
+                        <div class="timeline-item flex items-center gap-4" data-time="23:59:59.9" data-years="0.00001">
+                            <div class="w-4 h-4 bg-yellow-500 rounded-full flex-shrink-0 shadow-lg"></div>
+                            <div class="flex-1">
+                                <div class="text-sm font-semibold text-yellow-400">10,000 years ago</div>
+                                <div class="text-limestone-gray">Agriculture begins</div>
+                                <div class="text-xs text-yellow-300 italic">🌾 Civilization starts</div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 
                 <!-- Deep Time Call-to-Action -->
                 <div class="mt-6 pt-6 border-t border-gray-600 text-center">
                     <p class="text-gray-300 text-sm mb-3">
-                        Want to truly grasp how ancient 508 million years ago is?
+                        Want even more mind-blowing perspective on deep time?
                     </p>
                     <a href="deep-time.html" class="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:from-indigo-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105">
-                        🚀 Explore Earth's 24-Hour Timeline →
+                        🚀 Explore Full Timeline & Perspective Facts →
                     </a>
                 </div>
             </div>
@@ -2650,6 +2750,122 @@
                 // Reset after 4 seconds
                 resetTimer = setTimeout(resetEasterEgg, 4000);
             });
+            
+            // Interactive Timeline Clock Setup
+            const timelineContainer = document.getElementById('timelineContainer');
+            const deepTimeClock = document.getElementById('deepTimeClock');
+            
+            if (timelineContainer && deepTimeClock) {
+                console.log('Setting up interactive timeline clock');
+                
+                // Function to convert time string to minutes for easier calculation
+                function timeToMinutes(timeStr) {
+                    if (timeStr.includes(':')) {
+                        const parts = timeStr.split(':');
+                        const hours = parseInt(parts[0]) || 0;
+                        const minutes = parseInt(parts[1]) || 0;
+                        const seconds = parseFloat(parts[2]) || 0;
+                        return hours * 60 + minutes + seconds / 60;
+                    }
+                    return 0;
+                }
+                
+                // Function to format time for display
+                function formatTime(timeStr) {
+                    if (timeStr.includes(':')) {
+                        const parts = timeStr.split(':');
+                        const hours = parts[0].padStart(2, '0');
+                        const minutes = parts[1].padStart(2, '0');
+                        const seconds = parts[2] ? parts[2].padStart(2, '0') : '00';
+                        return `${hours}:${minutes}:${seconds}`;
+                    }
+                    return timeStr;
+                }
+                
+                // Update clock based on scroll position
+                function updateClock() {
+                    const container = timelineContainer;
+                    const scrollTop = container.scrollTop;
+                    const scrollHeight = container.scrollHeight - container.clientHeight;
+                    const scrollPercent = Math.min(scrollTop / scrollHeight, 1);
+                    
+                    // Get all timeline items with data-time attributes
+                    const timelineItems = container.querySelectorAll('.timeline-item[data-time]');
+                    
+                    if (timelineItems.length === 0) return;
+                    
+                    // Find which timeline item we're closest to based on scroll position
+                    let targetTime = '00:00:00';
+                    
+                    if (scrollPercent <= 0) {
+                        // At the top - show first time
+                        targetTime = timelineItems[0].dataset.time;
+                    } else if (scrollPercent >= 1) {
+                        // At the bottom - show last time
+                        targetTime = timelineItems[timelineItems.length - 1].dataset.time;
+                    } else {
+                        // Interpolate between timeline items
+                        const itemIndex = scrollPercent * (timelineItems.length - 1);
+                        const lowerIndex = Math.floor(itemIndex);
+                        const upperIndex = Math.ceil(itemIndex);
+                        
+                        if (lowerIndex === upperIndex) {
+                            targetTime = timelineItems[lowerIndex].dataset.time;
+                        } else {
+                            // Interpolate between two times
+                            const lowerTime = timelineItems[lowerIndex].dataset.time;
+                            const upperTime = timelineItems[upperIndex].dataset.time;
+                            const fraction = itemIndex - lowerIndex;
+                            
+                            const lowerMinutes = timeToMinutes(lowerTime);
+                            const upperMinutes = timeToMinutes(upperTime);
+                            const interpolatedMinutes = lowerMinutes + (upperMinutes - lowerMinutes) * fraction;
+                            
+                            // Convert back to time format
+                            const hours = Math.floor(interpolatedMinutes / 60);
+                            const minutes = Math.floor(interpolatedMinutes % 60);
+                            const seconds = Math.floor((interpolatedMinutes % 1) * 60);
+                            
+                            targetTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                        }
+                    }
+                    
+                    // Add seconds if not present
+                    if (targetTime && !targetTime.includes(':') || (targetTime.match(/:/g) || []).length === 1) {
+                        if (targetTime.includes('.')) {
+                            // Handle decimal seconds like "23:59:59.9"
+                            const parts = targetTime.split(':');
+                            if (parts.length === 3) {
+                                targetTime = formatTime(targetTime);
+                            } else {
+                                targetTime = targetTime + ':00';
+                            }
+                        } else {
+                            targetTime = targetTime + ':00';
+                        }
+                    }
+                    
+                    // Update the clock display
+                    deepTimeClock.textContent = formatTime(targetTime);
+                    
+                    // Add visual feedback - glow effect during scroll
+                    deepTimeClock.style.boxShadow = '0 0 10px rgba(255, 165, 0, 0.3)';
+                    clearTimeout(deepTimeClock.glowTimeout);
+                    deepTimeClock.glowTimeout = setTimeout(() => {
+                        deepTimeClock.style.boxShadow = '';
+                    }, 150);
+                }
+                
+                // Add scroll event listener
+                timelineContainer.addEventListener('scroll', updateClock);
+                
+                // Initialize clock with first time
+                updateClock();
+                
+                console.log('Interactive timeline clock setup complete');
+            } else {
+                console.log('Timeline elements not found');
+            }
             
             console.log('Easter Egg setup complete');
         });
