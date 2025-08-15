@@ -3,6 +3,7 @@ const CACHE_NAME = 'burgess-shale-v1';
 const urlsToCache = [
   './',
   './index.html',
+  './reconciling-evolution.html',
   './manifest.json',
   // Cache all fossil images
   './fossils/anomalocaris/anomalocaris-canadensis-large.jpg',
