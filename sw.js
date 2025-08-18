@@ -1,9 +1,10 @@
 // Service Worker for Burgess Shale Explorer
-const CACHE_NAME = 'burgess-shale-v1';
+const CACHE_NAME = 'burgess-shale-v2';
 const urlsToCache = [
   './',
   './index.html',
-  './reconciling-evolution.html',
+  './faith-and-science.html',
+  './deep-time.html',
   './manifest.json',
   // Cache all fossil images
   './fossils/anomalocaris/anomalocaris-canadensis-large.jpg',

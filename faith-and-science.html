@@ -44,6 +44,7 @@
         .expandable-content.expanded {
             max-height: 2000px;
             transition: max-height 0.5s ease-in;
+            overflow: visible; /* allow tooltips and callouts to extend beyond the container when open */
         }
         .expand-btn {
             cursor: pointer;
@@ -51,6 +52,41 @@
         }
         .expand-btn.rotated {
             transform: rotate(90deg);
+        }
+        /* Ensure in-page anchors are visible below the sticky header */
+        section { scroll-margin-top: 6.5rem; }
+        #notes { scroll-margin-top: 6.5rem; }
+        .anchor-target { scroll-margin-top: 6.5rem; }
+    </style>
+    <style>
+        /* Tooltip styles */
+        .has-tooltip { position: relative; display: inline-block; }
+        .has-tooltip .tooltip {
+            position: fixed; /* position relative to viewport for smart placement */
+            background: rgba(10,14,26,0.98); /* cosmic-dark */
+            color: #e5e7eb; /* limestone-gray */
+            border: 1px solid #0e7490; /* cyan-700 */
+            padding: 0.45rem 0.6rem;
+            font-size: 0.8rem;
+            border-radius: 0.375rem;
+            max-width: 24rem;
+            line-height: 1.25;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(2px);
+            transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+            pointer-events: none; /* prevents flicker */
+            white-space: normal;
+        }
+        .tooltip--bottom { transform: translateY(2px); }
+        .tooltip--top { transform: translateY(-2px); }
+        .has-tooltip:hover .tooltip,
+        .has-tooltip:focus-within .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -71,9 +107,9 @@
     </header>
 
     <!-- Quick Navigation -->
-    <nav class="bg-cosmic-dark bg-opacity-50 backdrop-blur-sm sticky top-16 z-30 border-b border-amber-fossil border-opacity-10">
+    <nav role="navigation" aria-label="Section navigation" class="bg-cosmic-dark bg-opacity-50 backdrop-blur-sm sticky top-16 z-30 border-b border-amber-fossil border-opacity-10">
         <div class="container mx-auto px-4 py-2">
-            <div class="flex flex-wrap gap-2 text-xs">
+            <div class="flex flex-wrap gap-2 text-xs w-full items-center">
                 <a href="#introduction" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Introduction</a>
                 <a href="#concordism" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Concordism</a>
                 <a href="#genesis" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Genesis Context</a>
@@ -81,6 +117,11 @@
                 <a href="#specific-questions" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Specific Questions</a>
                 <a href="#current-understanding" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Current Views</a>
                 <a href="#misconceptions" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Misconceptions</a>
+                <a href="#notes" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Notes</a>
+                <div class="ml-auto flex gap-2">
+                    <button id="expandAllBtn" class="text-xs text-limestone-gray bg-cosmic-dark bg-opacity-60 border border-cyan-700 px-2 py-1 rounded hover:bg-cyan-900" onclick="expandAll()">Expand all</button>
+                    <button id="collapseAllBtn" class="text-xs text-limestone-gray bg-cosmic-dark bg-opacity-60 border border-cyan-700 px-2 py-1 rounded hover:bg-cyan-900" onclick="collapseAll()">Collapse all</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -102,8 +143,11 @@
 
                 <div class="bg-gradient-to-r from-cyan-900 to-blue-900 bg-opacity-30 p-6 rounded-lg mb-6">
                     <h3 class="text-xl font-bold text-cyan-300 mb-3">Faith and Science or Faith vs. Science?</h3>
+                    <p class="text-gray-200 leading-relaxed mb-3">
+                        Members of The Church of Jesus Christ of Latter-day Saints (LDS) have long grappled with questions about evolution, the age of the Earth, and scriptural creation accounts. Do modern scientific discoveries irreconcilably conflict with the Bible and LDS doctrine? Prominent Church leaders and scholars have offered varying perspectives over the past century. This page—written from a faith‑affirming, Church‑oriented viewpoint—explores how LDS beliefs can be harmonized with scientific truth.
+                    </p>
                     <p class="text-gray-200 leading-relaxed">
-                        Members of The Church of Jesus Christ of Latter-day Saints have long grappled with questions about evolution, the age of the Earth, and scriptural creation accounts. Do modern scientific discoveries irreconcilably conflict with the Bible and LDS doctrine? Some assume that belief in biblical creation automatically conflicts with modern evolutionary biology. However, many Latter-day Saint scholars and leaders have found ways to harmonize their faith with scientific findings.
+                        We examine historical debates among Church leaders, insights into how to interpret Genesis, and examples (from evolution to the Flood of Noah) that illuminate the relationship between science and our understanding of God’s creations. Each section provides a brief overview followed by an expandable discussion with details and references. The goal is to foster faith while showing that religion and science need not be in conflict when each is approached in the proper light.
                     </p>
                 </div>
 
@@ -118,7 +162,7 @@
             <!-- Part 1: Concordism -->
             <section id="concordism" class="mb-12">
                 <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('concordism-content')">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('concordism-content', this)">
                         <span class="expand-btn mr-2 rotated">▶</span>
                         Part 1: The Problem of "Concordism"
                     </h2>
@@ -133,7 +177,9 @@
                     <div id="concordism-content" class="expandable-content expanded">
                         <h3 class="text-xl font-bold text-cyan-400 mb-3">The Concordist Assumption</h3>
                         <p class="text-gray-200 leading-relaxed mb-4">
-                            Concordism is, as Spackman explains, "an assumption that science, especially evolution or the age of the earth … and scripture are speaking the same language. They're talking about the same thing and therefore they have to match up or one of them is false." This mindset leads to two common extremes:
+                            <span class="has-tooltip underline decoration-dotted">Concordism
+                                <span class="tooltip">The assumption that scriptural texts and scientific accounts must align detail-for-detail; otherwise one must be false.</span>
+                            </span> is, as Spackman explains, "an assumption that science, especially evolution or the age of the earth … and scripture are speaking the same language. They're talking about the same thing and therefore they have to match up or one of them is false." This mindset leads to two common extremes:
                         </p>
 
                         <div class="grid md:grid-cols-2 gap-4 mb-6">
@@ -165,7 +211,7 @@
             <!-- Part 2: Genesis Context -->
             <section id="genesis" class="mb-12">
                 <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('genesis-content')">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('genesis-content', this)">
                         <span class="expand-btn mr-2">▶</span>
                         Part 2: Interpreting Genesis in Context
                     </h2>
@@ -176,29 +222,52 @@
                             The Bible reflects an ancient worldview that God used to teach spiritual truths to ancient people. Understanding this context is crucial for proper interpretation.
                         </p>
                     </div>
-
+                    
                     <div id="genesis-content" class="expandable-content">
                         <h3 class="text-xl font-bold text-cyan-400 mb-3">The Ancient Worldview</h3>
                         <p class="text-gray-200 leading-relaxed mb-4">
-                            The Bible reflects an ancient worldview—for example, its writers assumed a flat, motionless earth beneath a solid dome-like sky. Today we know the earth is a sphere orbiting the sun—an idea once deemed "flatly contrary to scripture"! Yet accepting a round Earth poses no crisis of faith for believers.
+                            Many Bible readers and scholars note that Genesis reflects an <span class="has-tooltip underline decoration-dotted">ancient Near Eastern cosmology
+                                <span class="tooltip">The worldview common to cultures of the ancient Near East (e.g., Israel, Babylon), including concepts like a solid “firmament” and waters above.</span>
+                            </span> (e.g., language about the “firmament”), so it should be read in the worldview of its original audience rather than as a modern science text. On that view, God did not reveal astronomy to ancient Israel so much as He taught spiritual truths using their existing understanding of the cosmos. Likewise, the creation story in Genesis was given to teach theological lessons (about God’s power, the purpose of life, the sacredness of the Sabbath, etc.), not to reveal scientific details of Earth’s natural history.
                         </p>
-
+                    
                         <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg mb-4">
                             <p class="text-cyan-300 text-sm font-semibold mb-2">Key Point:</p>
                             <p class="text-gray-200 text-sm">
                                 Scripture often speaks in the terms of the worldview of its original audience. God did not reveal astronomy to ancient Israel; instead, He taught spiritual truths using their existing cosmic understanding.
                             </p>
                         </div>
-
+                    
                         <h3 class="text-xl font-bold text-cyan-400 mb-3">What "Literal" Actually Means</h3>
                         <p class="text-gray-200 leading-relaxed mb-4">
                             Historically, to read scripture "literally" meant to read it "according to the author's intent," with full context of genre and background. A truly literal reading recognizes when a biblical passage is poetic or symbolic.
                         </p>
-
+                    
                         <div class="bg-amber-fossil bg-opacity-20 p-6 rounded-lg">
                             <p class="text-amber-fossil text-sm font-semibold mb-2">Augustine's Definition (AD 400):</p>
                             <p class="text-gray-200 text-sm">
                                 "A literal reading requires expertise—reading poetry as poetry, fiction as fiction, history as history. It doesn't mean a surface reading without context or a scientific reading."
+                            </p>
+                        </div>
+                        <p class="text-gray-400 text-xs mb-4">
+                            See <a href="#notes" class="text-cyan-300 hover:underline">Notes</a> for the 1910 clarification about the “days” of Creation not needing to be 24‑hour days.
+                        </p>
+                        <p class="text-gray-200 leading-relaxed mb-4">
+                            In historic Christian usage (e.g., Augustine), the “literal sense” means the sense the author intended—sometimes figurative, sometimes historical—rather than a surface, science‑like reading. Latter‑day Saints similarly seek the author’s intent, aided by study and the Holy Ghost.
+                        </p>
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Misreading Genesis with a Scientific Lens</h3>
+                        <p class="text-gray-200 leading-relaxed mb-4">
+                            The creation account in Genesis can certainly inspire scientific curiosity, but the questions we often ask it to answer are not within its scope. The text was given to teach religious principles (God’s sovereignty, the purpose of the Sabbath, the order of creation) within the cultural understanding of an ancient people. Reading Genesis primarily as a modern science text risks a deep misreading—whether by insisting it perfectly matches science in a young‑earth way or by claiming it secretly encodes today’s theories.
+                        </p>
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg mb-4">
+                            <p class="text-cyan-300 text-sm font-semibold mb-2">Historical Detour: “Pre‑Adamites” and Polygenism</p>
+                            <p class="text-gray-200 text-sm mb-2">
+                                In the 17th century, Isaac La Peyrère proposed that <span class="has-tooltip underline decoration-dotted">“Pre‑Adamites”
+                                    <span class="tooltip">A speculative theory that humans existed before or outside Adam and Eve; not a Latter‑day Saint doctrine.</span>
+                                </span> existed before or outside Eden to explain human diversity—an idea later adapted into 19th‑century “polygenism.” Such attempts to force‑fit Genesis into scientific frameworks introduced new theological problems and, at times, were twisted to justify immoral views. Today, Latter‑day Saints generally treat such theories as speculative and focus instead on the doctrinal truths Genesis is meant to teach.
+                            </p>
+                            <p class="text-gray-300 text-xs">
+                                Takeaway: Read Genesis for its theological aims; let science study natural history without importing speculative models into doctrine.
                             </p>
                         </div>
                     </div>
@@ -208,7 +277,7 @@
             <!-- Part 3: LDS History -->
             <section id="lds-history" class="mb-12">
                 <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('history-content')">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('history-content', this)">
                         <span class="expand-btn mr-2">▶</span>
                         Part 3: LDS Historical Perspectives
                     </h2>
@@ -251,14 +320,25 @@
 
                         <h3 class="text-xl font-bold text-cyan-400 mb-3">President David O. McKay's Open Approach</h3>
                         <p class="text-gray-200 leading-relaxed mb-4">
-                            President McKay (1951-1970) was personally friendly toward scientific inquiry and evolutionary theory. He once said "Genesis in no way prohibits evolution" and approved pro-evolution articles for Church publications.
+                            President David O. McKay (1951–1970) was personally friendly toward scientific inquiry and indicated on several occasions that belief in evolution could be compatible with belief in God. During his presidency, a BYU biology article discussing DNA and evolution was approved for publication in <em>The Instructor</em> with an editor’s note clarifying that it was not presented as an official Church position. McKay’s approval reflected confidence that honest scientific discussion could occur among Latter-day Saints without undermining faith, while the Church remained institutionally neutral.
+                        </p>
+                        <p class="text-gray-400 text-xs mt-2">
+                            See <a href="#notes" class="text-cyan-300 hover:underline">Notes</a> for a reminder about the editor’s note accompanying a BYU biology article during President McKay’s tenure.
                         </p>
 
                         <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
                             <p class="text-cyan-300 text-sm font-semibold mb-2">Key Example:</p>
                             <p class="text-gray-200 text-sm">
-                                A BYU professor submitted an article on DNA and evolution to a Church magazine. McKay read it and said "This is fantastic work. Run it," but included a disclaimer that it wasn't official Church doctrine.
+                                Example: A BYU biology article on DNA and evolution was published in <em>The Instructor</em> during President McKay’s tenure, accompanied by an editor’s note stating it was not an official Church position—illustrating space for scientific discussion without binding doctrine.
                             </p>
+                        </div>
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg mt-6">
+                            <h4 class="text-amber-fossil font-semibold mb-2">More Context from Historians</h4>
+                            <ul class="text-gray-300 text-sm space-y-2">
+                                <li>• Historian Ben Spackman observes that Joseph Fielding Smith “temporarily won the evolutionary debate” among Latter-day Saints, largely through his longevity, seniority, and prolific writing.</li>
+                                <li>• Roberts (British), Talmage (British), and Widtsoe (Norwegian) were converts exposed to European scholarship, while Smith exemplified a very literal 19th‑century scripture reading.</li>
+                                <li>• In 1931 the First Presidency counseled the Brethren to leave questions of geology, biology, archaeology, and anthropology to scientific research—an institutional posture of neutrality that continues.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -267,7 +347,7 @@
             <!-- Part 4: Specific Questions -->
             <section id="specific-questions" class="mb-12">
                 <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('questions-content')">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('questions-content', this)">
                         <span class="expand-btn mr-2">▶</span>
                         Part 4: Specific Questions & Clarifications
                     </h2>
@@ -276,7 +356,7 @@
                         <div class="space-y-6">
                             <!-- Human Evolution -->
                             <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
-                                <h3 class="text-xl font-bold text-cyan-400 mb-3">Did Humans Evolve from Apes?</h3>
+                                <h3 id="q-humans-apes" class="text-xl font-bold text-cyan-400 mb-3 anchor-target">Did Humans Evolve from Apes?</h3>
                                 <div class="grid md:grid-cols-2 gap-4">
                                     <div class="bg-red-900 bg-opacity-30 p-3 rounded">
                                         <p class="text-red-300 text-sm"><span class="font-bold">❌ Misconception:</span> "Evolution claims we came from monkeys"</p>
@@ -288,34 +368,44 @@
                                 <p class="text-gray-200 text-sm mt-3 italic">
                                     "You think we came from apes? Well, Genesis says we came from dust. Is that really so much better?" - Ben Spackman
                                 </p>
+                                <p class="text-gray-200 text-sm mt-3">
+                                    Evolution does not teach that humans descend from modern apes, but that humans and other primates share common ancestors. Latter‑day Saints can acknowledge strong biological evidence for shared ancestry while affirming that our spirits are children of God and that God is the ultimate author of life.
+                                </p>
+                                <div class="bg-cyan-300 bg-opacity-20 p-4 rounded mt-3">
+                                    <p class="text-cyan-300 text-sm font-semibold mb-1">Evolution ≠ Abiogenesis</p>
+                                    <p class="text-gray-200 text-sm">Evolution explains how living organisms change and diversify over time; it does not address how life first began (abiogenesis). These are distinct questions.</p>
+                                </div>
+                                <p class="text-gray-400 text-xs mt-2">
+                                    See <a href="#notes" class="text-cyan-300 hover:underline">Notes</a> for the 1909 First Presidency statement on the divine origin of man and the scope of scientific inquiry.
+                                </p>
                             </div>
 
                             <!-- Flat Earth -->
                             <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
-                                <h3 class="text-xl font-bold text-cyan-400 mb-3">Does the Bible Support a Flat Earth?</h3>
+                                <h3 id="q-flat-earth" class="text-xl font-bold text-cyan-400 mb-3 anchor-target">Does the Bible Support a Flat Earth?</h3>
                                 <p class="text-gray-200 text-sm mb-3">
-                                    <strong>Historical Reality:</strong> Biblical Hebrews assumed a flat earth. Some verses imply geocentric, flat-earth cosmology.
+                                    <strong>Scholarly Observation:</strong> Many scholars note that biblical language reflects ancient Near Eastern cosmology (e.g., “firmament”). This invites a contextual reading rather than a modern scientific one.
                                 </p>
                                 <p class="text-gray-200 text-sm mb-3">
-                                    <strong>Modern LDS Position:</strong> We accept a globe orbiting the sun, despite this being "flatly contrary to scripture" if taken literally.
+                                    <strong>Latter-day Saint Approach:</strong> The Church has not adopted a scientific cosmology as doctrine; members accept modern astronomy while reading scripture for its spiritual messages.
                                 </p>
                                 <div class="bg-amber-fossil bg-opacity-20 p-3 rounded">
                                     <p class="text-amber-fossil text-xs font-semibold">The Lesson:</p>
-                                    <p class="text-gray-200 text-xs">This shows us how to handle evolution—understand ancient context, don't expect technical scientific knowledge in scripture.</p>
+                                    <p class="text-gray-200 text-xs">This suggests a model for reading Genesis and evolution—honour the ancient context and avoid expecting technical scientific detail from scripture.</p>
                                 </div>
                             </div>
 
                             <!-- Noah's Flood -->
                             <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
-                                <h3 class="text-xl font-bold text-cyan-400 mb-3">Noah's Flood vs. The Resurrection</h3>
+                                <h3 id="q-flood-resurrection" class="text-xl font-bold text-cyan-400 mb-3 anchor-target">Noah's Flood vs. The Resurrection</h3>
                                 <div class="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <h4 class="text-cyan-300 font-semibold mb-2">Noah's Flood</h4>
                                         <ul class="text-gray-300 text-sm space-y-1">
-                                            <li>• Would leave massive geological evidence</li>
-                                            <li>• Such evidence is not found</li>
-                                            <li>• May be local or symbolic</li>
-                                            <li>• Can be evaluated by science</li>
+                                            <li>• Latter-day Saints differ on scope (global, local, or symbolic)</li>
+                                            <li>• The Church has not taken an official position on its extent</li>
+                                            <li>• Scientific questions about natural mechanisms can be studied</li>
+                                            <li>• Spiritual meanings remain central in scripture</li>
                                         </ul>
                                     </div>
                                     <div>
@@ -337,7 +427,7 @@
             <!-- Part 5: Current Understanding -->
             <section id="current-understanding" class="mb-12">
                 <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('current-content')">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('current-content', this)">
                         <span class="expand-btn mr-2">▶</span>
                         Part 5: Current Understanding & Official Positions
                     </h2>
@@ -347,6 +437,9 @@
                             <h3 class="text-cyan-300 font-semibold mb-2">Official Church Statement:</h3>
                             <p class="text-gray-200 text-sm">
                                 "The Church has no official position on the theory of evolution" - it's "a matter for scientific study"
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">
+                                See <a href="#notes" class="text-cyan-300 hover:underline">Notes</a> for the Doctrine and Covenants Student Manual (2016) appendix on “Evolution.”
                             </p>
                         </div>
 
@@ -380,6 +473,21 @@
                             <h4 class="text-amber-fossil font-semibold mb-2">President Russell M. Nelson:</h4>
                             <p class="text-gray-200 text-sm italic">
                                 "There is no conflict between science and religion. Conflict only arises from an incomplete knowledge of either science or religion (or both)."
+                            </p>
+                        </div>
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg mt-6">
+                            <p class="text-cyan-300 text-sm font-semibold mb-2">Concrete Example:</p>
+                            <p class="text-gray-200 text-sm">
+                                DNA mutations and natural selection can explain how human intelligence developed over millions of years. This does not threaten the doctrine that we are created “in God’s image” with divine potential—it simply describes a possible method by which God prepared mortal bodies for eternal spirits.
+                            </p>
+                        </div>
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg mt-6">
+                            <h4 class="text-amber-fossil font-semibold mb-2">Must Religion and Science Conflict?</h4>
+                            <p class="text-gray-200 text-sm mb-3">
+                                Many great scientists were motivated by faith. Isaac Newton saw his work as studying God’s orderly creations and wrote extensively on scripture. The Galileo episode, often framed as “science vs. religion,” also involved politics and personalities. Over time, truth from any source prevails—and believers refine their interpretations while holding to spiritual truths.
+                            </p>
+                            <p class="text-gray-300 text-xs">
+                                Principle: Science explains the natural world through testable methods; religion reveals purpose, morality, and covenant truths. Where they seem to overlap, patient study helps us reconcile apparent conflicts.
                             </p>
                         </div>
                     </div>
@@ -470,6 +578,30 @@
             </section>
 
         </article>
+    <!-- Sources Section -->
+    <section id="sources" class="mb-12">
+        <h2 class="text-2xl font-bold text-cyan-300 mb-6">Sources</h2>
+        <ul class="text-gray-300 text-sm space-y-2">
+            <li>• <a href="https://www.churchofjesuschrist.org/study/history/topics/organic-evolution" target="_blank" class="text-cyan-300 hover:underline">Church History Topics: “Organic Evolution”</a> — official historical overview; neutrality; leaders’ diverse views</li>
+            <li>• <a href="https://www.churchofjesuschrist.org/study/manual/gospel-topics/1909-first-presidency-origin-of-man" target="_blank" class="text-cyan-300 hover:underline">First Presidency statement “The Origin of Man” (1909)</a> and <a href="https://www.churchofjesuschrist.org/study/manual/gospel-topics/1925-mormon-view-of-evolution" target="_blank" class="text-cyan-300 hover:underline">“Mormon View of Evolution” (1925)</a> — foundational teachings</li>
+            <li>• <a href="https://www.churchofjesuschrist.org/study/manual/doctrine-and-covenants-student-manual-2016/chapter-40-doctrine-and-covenants-129-132?lang=eng#title_number144" target="_blank" class="text-cyan-300 hover:underline">Doctrine and Covenants Student Manual (2016), Appendix on “Evolution”</a> — reiterates neutrality</li>
+            <li>• 1931 First Presidency guidance (quoted in <em><a href="https://www.churchofjesuschrist.org/study/history/saints-v3" target="_blank" class="text-cyan-300 hover:underline">Saints, vol. 3</a></em>) — leave geology/biology/anthropology to scientific research</li>
+            <li>• <a href="https://speeches.byu.edu/talks/russell-m-nelson/the-tie-between-science-and-religion/" target="_blank" class="text-cyan-300 hover:underline">President Russell M. Nelson, BYU devotional “The Tie Between Science and Religion” (2015)</a> — “no conflict” framing</li>
+            <li>• <a href="https://biology.byu.edu/reconciling-evolution" target="_blank" class="text-cyan-300 hover:underline">BYU Department of Biology: “Reconciling Evolution” resources</a> — curriculum for faithful acceptance of evolution</li>
+            <li>• <a href="https://rsc.byu.edu/book/evolution-gospel-seeking-grandeur-view-life" target="_blank" class="text-cyan-300 hover:underline">BYU Religious Studies Center: “Evolution and the Gospel: Seeking Grandeur in This View of Life”</a> — faith-affirming perspectives</li>
+            <li>• Ben Spackman, <a href="https://gospeltangents.com/2019/01/evolution-bible-irreconcilable-differences/" target="_blank" class="text-cyan-300 hover:underline">Gospel Tangents interview</a> &amp; summaries — scholarly discussion of concordism and reading Genesis in context (scholar’s view, not official doctrine)</li>
+            <li>• Wheat &amp; Tares blog summary of Ben Spackman’s interview — examples of ancient scriptural cosmology (firmament/flat earth motifs) and the risk of reading Genesis as a modern science text (contextual, non-official perspective)</li>
+        </ul>
+        <div id="notes" class="mt-4 text-gray-400 text-xs leading-relaxed">
+            <p class="font-semibold text-gray-300 mb-1">Notes:</p>
+            <ul class="list-disc ml-5 space-y-1">
+                <li>1910 First Presidency guidance (reported contemporaneously) allowed that the “days” of Creation need not be 24‑hour days and emphasized the divine origin of man’s spirit.</li>
+                <li>1931 First Presidency counsel advised leaving geology, biology, archaeology, and anthropology to scientific research; the Church maintained institutional neutrality.</li>
+                <li>Doctrine and Covenants Student Manual (2016), Appendix on “Evolution,” reiterates that the Church has no official position on evolution as a scientific theory.</li>
+                <li>McKay note: A BYU biology article on DNA &amp; evolution was published in <em>The Instructor</em> during President McKay’s tenure with a clarifying editor’s note (scientific discussion allowed; not binding doctrine).</li>
+            </ul>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
@@ -482,27 +614,165 @@
     </footer>
 
     <script>
-        function toggleSection(sectionId) {
+        function toggleSection(sectionId, headerEl) {
             const content = document.getElementById(sectionId);
-            const button = content.previousElementSibling.querySelector('.expand-btn');
-            
-            content.classList.toggle('expanded');
-            button.classList.toggle('rotated');
+            const button = headerEl ? headerEl.querySelector('.expand-btn') : null;
+            if (content) {
+                content.classList.toggle('expanded');
+            }
+            if (button) {
+                button.classList.toggle('rotated');
+            }
         }
 
-        // Smooth scrolling for navigation links
+        function expandAll() {
+            // Expand all custom expandable sections
+            document.querySelectorAll('.expandable-content').forEach(el => el.classList.add('expanded'));
+            // Rotate all chevrons
+            document.querySelectorAll('.expand-btn').forEach(btn => btn.classList.add('rotated'));
+        }
+
+        function collapseAll() {
+            // Collapse all custom expandable sections
+            document.querySelectorAll('.expandable-content').forEach(el => el.classList.remove('expanded'));
+            // Reset all chevrons
+            document.querySelectorAll('.expand-btn').forEach(btn => btn.classList.remove('rotated'));
+        }
+
+        // Smooth scrolling + auto-expand for navigation links
+        function expandContainerFor(targetEl) {
+            // If the target is inside a collapsible section, expand it
+            const sectionEl = targetEl.closest('section');
+            if (!sectionEl) return;
+            const content = sectionEl.querySelector('.expandable-content');
+            const header = sectionEl.querySelector('.expand-btn');
+            if (content && !content.classList.contains('expanded')) {
+                content.classList.add('expanded');
+                if (header) header.classList.add('rotated');
+            }
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    expandContainerFor(target);
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
+
+        // If page loads with a hash, expand and scroll to it
+        window.addEventListener('load', () => {
+            if (location.hash) {
+                const target = document.querySelector(location.hash);
+                if (target) {
+                    expandContainerFor(target);
+                    // small timeout to allow expansion transition before scroll
+                    setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
+                }
+            }
+        });
+
+        // Smart tooltip positioning
+        (function () {
+            const OFFSET = 8; // px
+            function positionTooltip(trigger, tip) {
+                // Remove any previous placement classes
+                tip.classList.remove('tooltip--top', 'tooltip--bottom');
+
+                const tRect = trigger.getBoundingClientRect();
+                const tipRect = tip.getBoundingClientRect(); // may be 0 if hidden
+
+                // Temporarily show to measure if needed
+                const prevVisibility = tip.style.visibility;
+                const prevOpacity = tip.style.opacity;
+                tip.style.visibility = 'hidden';
+                tip.style.opacity = '0';
+                tip.style.display = 'block';
+                const measure = tip.getBoundingClientRect();
+                const tipW = measure.width || 0;
+                const tipH = measure.height || 0;
+
+                // Default below the trigger, left-aligned with it
+                let top = tRect.bottom + OFFSET;
+                let left = tRect.left;
+
+                // If overflowing right, shift left so it fits
+                const overflowRight = left + tipW > window.innerWidth - 8;
+                if (overflowRight) {
+                    left = Math.max(8, window.innerWidth - tipW - 8);
+                }
+                // If overflowing left, clamp
+                if (left < 8) left = 8;
+
+                // If overflowing bottom, place above
+                const overflowBottom = top + tipH > window.innerHeight - 8;
+                if (overflowBottom) {
+                    top = tRect.top - tipH - OFFSET;
+                    tip.classList.add('tooltip--top');
+                } else {
+                    tip.classList.add('tooltip--bottom');
+                }
+
+                // If still off the top (very small viewport), clamp to top padding
+                if (top < 8) top = 8;
+
+                // Apply final coordinates
+                tip.style.left = `${left}px`;
+                tip.style.top = `${top}px`;
+
+                // Restore display state
+                tip.style.display = '';
+                tip.style.visibility = prevVisibility || '';
+                tip.style.opacity = prevOpacity || '';
+            }
+
+            function attachTooltipHandlers() {
+                const triggers = document.querySelectorAll('.has-tooltip');
+                triggers.forEach(tr => {
+                    const tip = tr.querySelector('.tooltip');
+                    if (!tip) return;
+                    // Keyboard accessibility
+                    if (!tr.hasAttribute('tabindex')) tr.setAttribute('tabindex', '0');
+                    tr.setAttribute('aria-describedby', ''); // decorative; no id needed
+
+                    function show() {
+                        // make visible before positioning to avoid 0 size in some browsers
+                        tip.style.visibility = 'visible';
+                        tip.style.opacity = '1';
+                        positionTooltip(tr, tip);
+                    }
+                    function hide() {
+                        tip.style.visibility = 'hidden';
+                        tip.style.opacity = '0';
+                    }
+
+                    tr.addEventListener('mouseenter', show);
+                    tr.addEventListener('focus', show);
+                    tr.addEventListener('mouseleave', hide);
+                    tr.addEventListener('blur', hide);
+                    // Reposition on scroll/resize while visible
+                    window.addEventListener('scroll', () => {
+                        if (tip.style.visibility === 'visible') positionTooltip(tr, tip);
+                    }, { passive: true });
+                    window.addEventListener('resize', () => {
+                        if (tip.style.visibility === 'visible') positionTooltip(tr, tip);
+                    });
+                });
+            }
+
+            // Initialize after DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attachTooltipHandlers);
+            } else {
+                attachTooltipHandlers();
+            }
+        })();
     </script>
 </body>
 </html>
