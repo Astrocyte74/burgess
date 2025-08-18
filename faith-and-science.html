@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Faith & Science: LDS Perspectives on Evolution - Burgess Shale</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0891b2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Burgess Shale">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-dark': '#0a0e1a',
+                        'deep-teal': '#1f4e5f',
+                        'shale-green': '#3a5f3f',
+                        'amber-fossil': '#ffa500',
+                        'limestone-gray': '#e5e7eb'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0e1a 0%, #1e3a8a 50%, #0f172a 100%);
+            min-height: 100vh;
+        }
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .expandable-content.expanded {
+            max-height: 2000px;
+            transition: max-height 0.5s ease-in;
+        }
+        .expand-btn {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .expand-btn.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- Header -->
+    <header class="bg-cosmic-dark bg-opacity-90 backdrop-blur-sm sticky top-0 z-40 border-b border-amber-fossil border-opacity-20">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-amber-fossil hover:text-yellow-300 transition-colors text-sm flex items-center">
+                    ← Back to Burgess Shale
+                </a>
+                <h1 class="text-lg md:text-xl font-bold text-amber-fossil text-center">
+                    🤝 Faith & Science
+                </h1>
+                <div class="w-32"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Navigation -->
+    <nav class="bg-cosmic-dark bg-opacity-50 backdrop-blur-sm sticky top-16 z-30 border-b border-amber-fossil border-opacity-10">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap gap-2 text-xs">
+                <a href="#introduction" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Introduction</a>
+                <a href="#concordism" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Concordism</a>
+                <a href="#genesis" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Genesis Context</a>
+                <a href="#lds-history" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">LDS History</a>
+                <a href="#specific-questions" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Specific Questions</a>
+                <a href="#current-understanding" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Current Views</a>
+                <a href="#misconceptions" class="text-cyan-300 hover:text-cyan-200 px-2 py-1 rounded">Misconceptions</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <article class="prose prose-invert prose-lg max-w-none">
+            
+            <!-- Introduction -->
+            <section id="introduction" class="mb-12">
+                <header class="text-center mb-8">
+                    <h1 class="text-3xl md:text-4xl font-bold text-amber-fossil mb-4">
+                        Faith & Science: LDS Perspectives on Evolution
+                    </h1>
+                    <p class="text-gray-300 text-lg">
+                        A comprehensive exploration of how faith and science can harmoniously coexist
+                    </p>
+                </header>
+
+                <div class="bg-gradient-to-r from-cyan-900 to-blue-900 bg-opacity-30 p-6 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold text-cyan-300 mb-3">Faith and Science or Faith vs. Science?</h3>
+                    <p class="text-gray-200 leading-relaxed">
+                        Members of The Church of Jesus Christ of Latter-day Saints have long grappled with questions about evolution, the age of the Earth, and scriptural creation accounts. Do modern scientific discoveries irreconcilably conflict with the Bible and LDS doctrine? Some assume that belief in biblical creation automatically conflicts with modern evolutionary biology. However, many Latter-day Saint scholars and leaders have found ways to harmonize their faith with scientific findings.
+                    </p>
+                </div>
+
+                <div class="bg-amber-fossil bg-opacity-20 p-6 rounded-lg">
+                    <h4 class="text-amber-fossil font-semibold mb-2">Key Insight from Ben Spackman:</h4>
+                    <p class="text-gray-200 text-sm italic">
+                        "Can evolution be reconciled with the Bible?" - Yes, "but not the way people think." Rather than seeing science and scripture as bitter enemies, we can view them as answering different questions.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Part 1: Concordism -->
+            <section id="concordism" class="mb-12">
+                <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('concordism-content')">
+                        <span class="expand-btn mr-2">▼</span>
+                        Part 1: The Problem of "Concordism"
+                    </h2>
+                    
+                    <div class="bg-cyan-300 bg-opacity-20 p-4 rounded mb-4">
+                        <p class="text-cyan-300 text-sm font-semibold mb-2">Overview:</p>
+                        <p class="text-gray-200 text-sm">
+                            One key issue underlying faith-science conflicts is "concordism" – the assumption that science and scripture must speak the exact same language and agree in every detail, or one of them must be false.
+                        </p>
+                    </div>
+
+                    <div id="concordism-content" class="expandable-content expanded">
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">The Concordist Assumption</h3>
+                        <p class="text-gray-200 leading-relaxed mb-4">
+                            Concordism is, as Spackman explains, "an assumption that science, especially evolution or the age of the earth … and scripture are speaking the same language. They're talking about the same thing and therefore they have to match up or one of them is false." This mindset leads to two common extremes:
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                                <h4 class="text-red-300 font-semibold mb-2">Young-Earth Creationists</h4>
+                                <p class="text-gray-300 text-sm">Twist science to fit a literal reading of the Bible (claiming Earth is only thousands of years old)</p>
+                            </div>
+                            <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                                <h4 class="text-red-300 font-semibold mb-2">Forced Metaphorizers</h4>
+                                <p class="text-gray-300 text-sm">Reinterpret Genesis metaphorically to force a fit with current science</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-shale-green bg-opacity-20 p-6 rounded-lg mb-4">
+                            <p class="text-green-300 text-sm font-semibold mb-2">Think of it this way:</p>
+                            <p class="text-gray-200 text-sm">
+                                When the Psalmist says "the sun rises" (Psalm 104:22), we don't reject astronomy because we know the Earth rotates. Similarly, when Moses describes photosynthesis occurring before the sun appears (Genesis 1), it's perfectly fine - he's teaching theology, not botany.
+                            </p>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Why Concordism is Flawed</h3>
+                        <p class="text-gray-200 leading-relaxed">
+                            Spackman argues that this underlying assumption is flawed. The belief that Genesis is providing a natural history of the earth, a physical history of the earth as a science textbook would is "simply not an accurate assumption." The Bible was never intended to give a modern scientific account of how God created the world. When we drop the expectation that scripture and science speak in the same terms, the supposed conflict between faith and evolution looks very different.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 2: Genesis Context -->
+            <section id="genesis" class="mb-12">
+                <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('genesis-content')">
+                        <span class="expand-btn mr-2">▼</span>
+                        Part 2: Interpreting Genesis in Context
+                    </h2>
+                    
+                    <div class="bg-cyan-300 bg-opacity-20 p-4 rounded mb-4">
+                        <p class="text-cyan-300 text-sm font-semibold mb-2">Overview:</p>
+                        <p class="text-gray-200 text-sm">
+                            The Bible reflects an ancient worldview that God used to teach spiritual truths to ancient people. Understanding this context is crucial for proper interpretation.
+                        </p>
+                    </div>
+
+                    <div id="genesis-content" class="expandable-content">
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">The Ancient Worldview</h3>
+                        <p class="text-gray-200 leading-relaxed mb-4">
+                            The Bible reflects an ancient worldview—for example, its writers assumed a flat, motionless earth beneath a solid dome-like sky. Today we know the earth is a sphere orbiting the sun—an idea once deemed "flatly contrary to scripture"! Yet accepting a round Earth poses no crisis of faith for believers.
+                        </p>
+
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg mb-4">
+                            <p class="text-cyan-300 text-sm font-semibold mb-2">Key Point:</p>
+                            <p class="text-gray-200 text-sm">
+                                Scripture often speaks in the terms of the worldview of its original audience. God did not reveal astronomy to ancient Israel; instead, He taught spiritual truths using their existing cosmic understanding.
+                            </p>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">What "Literal" Actually Means</h3>
+                        <p class="text-gray-200 leading-relaxed mb-4">
+                            Historically, to read scripture "literally" meant to read it "according to the author's intent," with full context of genre and background. A truly literal reading recognizes when a biblical passage is poetic or symbolic.
+                        </p>
+
+                        <div class="bg-amber-fossil bg-opacity-20 p-6 rounded-lg">
+                            <p class="text-amber-fossil text-sm font-semibold mb-2">Augustine's Definition (AD 400):</p>
+                            <p class="text-gray-200 text-sm">
+                                "A literal reading requires expertise—reading poetry as poetry, fiction as fiction, history as history. It doesn't mean a surface reading without context or a scientific reading."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 3: LDS History -->
+            <section id="lds-history" class="mb-12">
+                <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('history-content')">
+                        <span class="expand-btn mr-2">▼</span>
+                        Part 3: LDS Historical Perspectives
+                    </h2>
+                    
+                    <div class="bg-cyan-300 bg-opacity-20 p-4 rounded mb-4">
+                        <p class="text-cyan-300 text-sm font-semibold mb-2">Overview:</p>
+                        <p class="text-gray-200 text-sm">
+                            Early 20th-century LDS leaders had diverse views on evolution, from enthusiastic acceptance to strong opposition. Understanding this history shows that LDS doctrine was never monolithic on evolution.
+                        </p>
+                    </div>
+
+                    <div id="history-content" class="expandable-content">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-green-900 bg-opacity-30 p-4 rounded">
+                                <h4 class="text-green-300 font-semibold mb-3">Science-Friendly Leaders</h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li>• <strong>Elder James E. Talmage</strong> - Geologist</li>
+                                    <li>• <strong>Elder John A. Widtsoe</strong> - Agricultural scientist</li>
+                                    <li>• <strong>Elder B. H. Roberts</strong> - Theologian</li>
+                                </ul>
+                                <p class="text-gray-300 text-sm mt-3">Saw scientific discoveries as evidence of God's natural laws</p>
+                            </div>
+                            <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                                <h4 class="text-red-300 font-semibold mb-3">Conservative Opposition</h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li>• <strong>Elder Joseph Fielding Smith</strong></li>
+                                    <li>• Very literal reading of Genesis</li>
+                                    <li>• Published <em>Man, His Origin and Destiny</em> (1954)</li>
+                                    <li>• "Temporarily won the evolutionary debate"</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-shale-green bg-opacity-20 p-6 rounded-lg mb-6">
+                            <h4 class="text-green-300 font-semibold mb-2">1930s Church Response</h4>
+                            <p class="text-gray-200 text-sm">
+                                President Heber J. Grant (1931): The Brethren should "leave Geology, Biology, Archaeology and Anthropology … to scientific research" rather than fight over these subjects. <strong>The Church chose neutrality.</strong>
+                            </p>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">President David O. McKay's Open Approach</h3>
+                        <p class="text-gray-200 leading-relaxed mb-4">
+                            President McKay (1951-1970) was personally friendly toward scientific inquiry and evolutionary theory. He once said "Genesis in no way prohibits evolution" and approved pro-evolution articles for Church publications.
+                        </p>
+
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                            <p class="text-cyan-300 text-sm font-semibold mb-2">Key Example:</p>
+                            <p class="text-gray-200 text-sm">
+                                A BYU professor submitted an article on DNA and evolution to a Church magazine. McKay read it and said "This is fantastic work. Run it," but included a disclaimer that it wasn't official Church doctrine.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 4: Specific Questions -->
+            <section id="specific-questions" class="mb-12">
+                <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('questions-content')">
+                        <span class="expand-btn mr-2">▼</span>
+                        Part 4: Specific Questions & Clarifications
+                    </h2>
+
+                    <div id="questions-content" class="expandable-content">
+                        <div class="space-y-6">
+                            <!-- Human Evolution -->
+                            <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-3">Did Humans Evolve from Apes?</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-red-900 bg-opacity-30 p-3 rounded">
+                                        <p class="text-red-300 text-sm"><span class="font-bold">❌ Misconception:</span> "Evolution claims we came from monkeys"</p>
+                                    </div>
+                                    <div class="bg-green-900 bg-opacity-30 p-3 rounded">
+                                        <p class="text-green-300 text-sm"><span class="font-bold">✅ Reality:</span> Humans and apes share common ancestors</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-200 text-sm mt-3 italic">
+                                    "You think we came from apes? Well, Genesis says we came from dust. Is that really so much better?" - Ben Spackman
+                                </p>
+                            </div>
+
+                            <!-- Flat Earth -->
+                            <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-3">Does the Bible Support a Flat Earth?</h3>
+                                <p class="text-gray-200 text-sm mb-3">
+                                    <strong>Historical Reality:</strong> Biblical Hebrews assumed a flat earth. Some verses imply geocentric, flat-earth cosmology.
+                                </p>
+                                <p class="text-gray-200 text-sm mb-3">
+                                    <strong>Modern LDS Position:</strong> We accept a globe orbiting the sun, despite this being "flatly contrary to scripture" if taken literally.
+                                </p>
+                                <div class="bg-amber-fossil bg-opacity-20 p-3 rounded">
+                                    <p class="text-amber-fossil text-xs font-semibold">The Lesson:</p>
+                                    <p class="text-gray-200 text-xs">This shows us how to handle evolution—understand ancient context, don't expect technical scientific knowledge in scripture.</p>
+                                </div>
+                            </div>
+
+                            <!-- Noah's Flood -->
+                            <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-3">Noah's Flood vs. The Resurrection</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h4 class="text-cyan-300 font-semibold mb-2">Noah's Flood</h4>
+                                        <ul class="text-gray-300 text-sm space-y-1">
+                                            <li>• Would leave massive geological evidence</li>
+                                            <li>• Such evidence is not found</li>
+                                            <li>• May be local or symbolic</li>
+                                            <li>• Can be evaluated by science</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-cyan-300 font-semibold mb-2">The Resurrection</h4>
+                                        <ul class="text-gray-300 text-sm space-y-1">
+                                            <li>• Singular supernatural event</li>
+                                            <li>• Outside science's normal scope</li>
+                                            <li>• Matter of faith and divine power</li>
+                                            <li>• Cannot be proven/disproven scientifically</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 5: Current Understanding -->
+            <section id="current-understanding" class="mb-12">
+                <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-cyan-300 mb-4 flex items-center cursor-pointer" onclick="toggleSection('current-content')">
+                        <span class="expand-btn mr-2">▼</span>
+                        Part 5: Current Understanding & Official Positions
+                    </h2>
+
+                    <div id="current-content" class="expandable-content">
+                        <div class="bg-cyan-300 bg-opacity-20 p-6 rounded-lg mb-6">
+                            <h3 class="text-cyan-300 font-semibold mb-2">Official Church Statement:</h3>
+                            <p class="text-gray-200 text-sm">
+                                "The Church has no official position on the theory of evolution" - it's "a matter for scientific study"
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-green-900 bg-opacity-30 p-4 rounded">
+                                <h4 class="text-green-300 font-semibold mb-2">What the Church Does Affirm:</h4>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li>• Why we are here (divine purpose)</li>
+                                    <li>• Who we are (children of God)</li>
+                                    <li>• God is the ultimate Creator</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-900 bg-opacity-30 p-4 rounded">
+                                <h4 class="text-blue-300 font-semibold mb-2">What's Left to Science:</h4>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li>• How God carried out creation</li>
+                                    <li>• Specific mechanisms and timelines</li>
+                                    <li>• Natural processes and laws</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-shale-green bg-opacity-20 p-6 rounded-lg mb-6">
+                            <h4 class="text-green-300 font-semibold mb-2">BYU and Evolution Education</h4>
+                            <p class="text-gray-200 text-sm">
+                                At Church-owned schools, evolution is taught robustly. The BYU Biology Department's "Reconciling Evolution" initiative helps students see that one can accept evolution and remain a committed believer.
+                            </p>
+                        </div>
+
+                        <div class="bg-cosmic-dark bg-opacity-60 p-6 rounded-lg">
+                            <h4 class="text-amber-fossil font-semibold mb-2">President Russell M. Nelson:</h4>
+                            <p class="text-gray-200 text-sm italic">
+                                "There is no conflict between science and religion. Conflict only arises from an incomplete knowledge of either science or religion (or both)."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Misconceptions -->
+            <section id="misconceptions" class="mb-12">
+                <h2 class="text-2xl font-bold text-cyan-300 mb-6">🚫 Common Misunderstandings</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                        <p class="text-red-300 text-sm"><span class="font-bold">❌ Myth:</span> "Evolution means there's no God"</p>
+                        <p class="text-green-300 text-sm"><span class="font-bold">✅ Truth:</span> Evolution describes how, not who or why</p>
+                    </div>
+                    <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                        <p class="text-red-300 text-sm"><span class="font-bold">❌ Myth:</span> "Genesis must be scientifically literal"</p>
+                        <p class="text-green-300 text-sm"><span class="font-bold">✅ Truth:</span> Genesis teaches spiritual truths in ancient language</p>
+                    </div>
+                    <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                        <p class="text-red-300 text-sm"><span class="font-bold">❌ Myth:</span> "Accepting evolution weakens faith"</p>
+                        <p class="text-green-300 text-sm"><span class="font-bold">✅ Truth:</span> Many faithful members embrace both truth sources</p>
+                    </div>
+                    <div class="bg-red-900 bg-opacity-30 p-4 rounded">
+                        <p class="text-red-300 text-sm"><span class="font-bold">❌ Myth:</span> "Science and religion must conflict"</p>
+                        <p class="text-green-300 text-sm"><span class="font-bold">✅ Truth:</span> They answer different questions and complement each other</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-cyan-300 mb-6">Conclusion: "All Truth Is Part of the Gospel"</h2>
+                
+                <div class="bg-gradient-to-r from-cosmic-dark to-deep-teal bg-opacity-60 p-8 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold text-amber-fossil mb-4">🌟 Faith + Science in Action</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        Latter-day Saints believe God is the Master of the universe, the architect of life. Whether He chose to form our bodies over eons through evolution or in an instant is ultimately secondary to the truth that we are His children with a divine destiny.
+                    </p>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        The Gospel and evolution answer different aspects of truth. The Gospel teaches who we are and why we are here. Evolutionary science can enlighten us as to how God's creative processes might have unfolded over time.
+                    </p>
+                    <div class="bg-amber-fossil bg-opacity-20 p-4 rounded-lg">
+                        <p class="text-amber-fossil font-semibold text-center">
+                            "No evidence denies the hand of God in directing evolution." - Duane Jeffery, BYU Professor
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-deep-teal bg-opacity-30 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">A Balanced Approach</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4">
+                        An LDS member can confidently accept evolution where strong evidence exists while still having faith in divine purpose and miracles. This requires:
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded">
+                            <h4 class="text-cyan-300 font-semibold mb-2">1. Careful Scripture Interpretation</h4>
+                            <p class="text-gray-300 text-sm">Let it teach the "why" rather than forcing scientific "how" answers</p>
+                        </div>
+                        <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded">
+                            <h4 class="text-cyan-300 font-semibold mb-2">2. Scientific Humility</h4>
+                            <p class="text-gray-300 text-sm">Acknowledge what science can and cannot determine</p>
+                        </div>
+                        <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded">
+                            <h4 class="text-cyan-300 font-semibold mb-2">3. Faith in Truth</h4>
+                            <p class="text-gray-300 text-sm">Trust that all truth comes from God</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-cyan-300 mb-6">🔑 Key Takeaways</h2>
+                <div class="space-y-4">
+                    <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded-lg">
+                        <p class="text-gray-200 text-sm"><span class="text-cyan-300 font-semibold">•</span> <strong>Scripture and Science Serve Different Purposes:</strong> The Bible teaches us why and who created us, not the exact how or when.</p>
+                    </div>
+                    <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded-lg">
+                        <p class="text-gray-200 text-sm"><span class="text-cyan-300 font-semibold">•</span> <strong>Prophetic Views Have Varied:</strong> Faithful LDS leaders have expressed diverse opinions. The Church wisely chose neutrality.</p>
+                    </div>
+                    <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded-lg">
+                        <p class="text-gray-200 text-sm"><span class="text-cyan-300 font-semibold">•</span> <strong>"Literal" Reading = Contextual Reading:</strong> True literal interpretation means reading as the author intended.</p>
+                    </div>
+                    <div class="bg-cosmic-dark bg-opacity-60 p-4 rounded-lg">
+                        <p class="text-gray-200 text-sm"><span class="text-cyan-300 font-semibold">•</span> <strong>Faith and Science are Complementary:</strong> Both reveal truth from God through different methods.</p>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-cosmic-dark bg-opacity-90 border-t border-amber-fossil border-opacity-20 mt-12">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <a href="index.html" class="text-amber-fossil hover:text-yellow-300 transition-colors">
+                ← Return to Burgess Shale Explorer
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId);
+            const button = content.previousElementSibling.querySelector('.expand-btn');
+            
+            content.classList.toggle('expanded');
+            button.classList.toggle('rotated');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
